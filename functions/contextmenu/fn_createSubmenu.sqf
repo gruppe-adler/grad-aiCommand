@@ -16,6 +16,10 @@ _display = findDisplay grad_aicommand_contextmenu_DIALOG;
 _parentGroup = _display displayCtrl grad_aicommand_contextmenu_WPCG;
 (ctrlPosition _parentGroup) params ["_parentGroupX","_parentGroupY"];
 
+ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_TypeCG);
+ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_SpeedCG);
+ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_WaitCG);
+
 _idc = grad_aicommand_contextmenu_TypeCG + 1;
 _buttonW = grad_aicommand_contextmenu_ButtonW;
 _buttonH = grad_aicommand_contextmenu_ButtonH;
@@ -26,6 +30,7 @@ _yCG = _parentY;
 
 /*_parentGroup ctrlEnable false;*/
 _controlsGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars",_groupIDC,_parentGroup];
+_controlsGroup ctrlAddEventHandler ["MouseButtonDown",{_this call grad_aicommand_contextmenu_catchMouseClick}];
 _controlsGroup ctrlSetPosition [_xCG,_yCG,2,2];
 _controlsGroup ctrlCommit 0;
 
@@ -37,5 +42,6 @@ _create = {
 
 {
     _x params ["_text","_statement"];
+    _statement = _statement + " [] call grad_aicommand_fnc_updateContextMenu";
     call _create;
 } forEach _menuItems;

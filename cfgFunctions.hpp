@@ -31,11 +31,14 @@ class GRAD_aicommand {
     class contextmenu {
         file = MODULES_DIRECTORY\grad-aicommand\functions\contextmenu;
 
+        class catchMouseClick {};
         class createButton {};
         class createSubmenu {};
         class createWaypointMenu {};
         class openContextMenu {};
         class setWPSpeed {};
+        class setWPTimeout {};
         class setWPType {};
+        class updateContextMenu {};
     };
 };

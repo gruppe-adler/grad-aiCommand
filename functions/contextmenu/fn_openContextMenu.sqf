@@ -9,8 +9,6 @@ if (_open) then {
     if (isNull _display) then {
 
         (findDisplay 46) createDisplay "grad_aicommand_contextmenu";
-        missionNamespace setVariable ["grad_aicommand_contextmenu_isOpen",true];
-
         _display = findDisplay grad_aicommand_contextmenu_DIALOG;
         [_display,_dialogPos,_waypoint] call grad_aicommand_fnc_createWaypointMenu;
 
@@ -21,9 +19,6 @@ if (_open) then {
 } else {
     _display = findDisplay grad_aicommand_contextmenu_DIALOG;
     if (!isNull _display) then {
-
-        closeDialog grad_aicommand_contextmenu_DIALOG;
-        missionNamespace setVariable ["grad_aicommand_contextmenu_isOpen",false];
-
+        (findDisplay grad_aicommand_contextmenu_DIALOG) closeDisplay 0;
     };
 };

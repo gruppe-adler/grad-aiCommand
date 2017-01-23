@@ -14,8 +14,11 @@ _pos = _dialogPos;
 _pos params ["_xCG","_yCG"];
 _waypoint params ["_wpPos","_wpSpeed","_wpTimeout","_wpType","_wpStatements"];
 
+ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_WPCG);
+
 _parentGroup ctrlEnable false;
 _controlsGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars",grad_aicommand_contextmenu_WPCG];
+_controlsGroup ctrlAddEventHandler ["MouseButtonDown",{_this call grad_aicommand_contextmenu_catchMouseClick}];
 _controlsGroup ctrlSetPosition [_xCG,_yCG,2,2];
 _controlsGroup ctrlCommit 0;
 
@@ -28,22 +31,30 @@ _create = {
 
 _text = format ["TYPE (%1)",_wpType];
 _statement = "[_this select 0, 'TYPE',[
-    ['MOVE',""['MOVE'] call grad_aicommand_fnc_setWPType""],
-    ['CYCLE',""['CYCLE'] call grad_aicommand_fnc_setWPType""],
-    ['GET IN',""['GETIN NEAREST'] call grad_aicommand_fnc_setWPType""],
-    ['GET OUT',""['GETOUT'] call grad_aicommand_fnc_setWPType""]
+    ['MOVE',""['MOVE'] call grad_aicommand_fnc_setWPType;""],
+    ['CYCLE',""['CYCLE'] call grad_aicommand_fnc_setWPType;""],
+    ['GETIN NEAREST',""['GETIN NEAREST'] call grad_aicommand_fnc_setWPType;""],
+    ['GETOUT',""['GETOUT'] call grad_aicommand_fnc_setWPType;""]
 ]] call grad_aicommand_fnc_createSubMenu";
 call _create;
 
 _text = format ["SPEED (%1)",_wpSpeed];
 _statement = "[_this select 0, 'SPEED',[
-    ['UNCHANGED',""['UNCHANGED'] call grad_aicommand_fnc_setWPSpeed""],
-    ['LIMITED',""['LIMITED'] call grad_aicommand_fnc_setWPSpeed""],
-    ['NORMAL',""['NORMAL'] call grad_aicommand_fnc_setWPSpeed""],
-    ['FULL',""['FULL'] call grad_aicommand_fnc_setWPSpeed""]
+    ['UNCHANGED',""['UNCHANGED'] call grad_aicommand_fnc_setWPSpeed;""],
+    ['LIMITED',""['LIMITED'] call grad_aicommand_fnc_setWPSpeed;""],
+    ['NORMAL',""['NORMAL'] call grad_aicommand_fnc_setWPSpeed;""],
+    ['FULL',""['FULL'] call grad_aicommand_fnc_setWPSpeed;""]
 ]] call grad_aicommand_fnc_createSubMenu";
 call _create;
 
 _text = format ["WAIT (%1 SECONDS)",_wpTimeout select 0];
-_statement = "_th[_this select 0, 'WAIT']is call grad_aicommand_fnc_createSubMenu";
+_statement = "[_this select 0, 'WAIT',[
+    ['30 Seconds',""[30] call grad_aicommand_fnc_setWPTimeout;""],
+    ['60 Seconds',""[60] call grad_aicommand_fnc_setWPTimeout;""],
+    ['90 Seconds',""[90] call grad_aicommand_fnc_setWPTimeout;""],
+    ['120 Seconds',""[120] call grad_aicommand_fnc_setWPTimeout;""],
+    ['180 Seconds',""[180] call grad_aicommand_fnc_setWPTimeout;""],
+    ['240 Seconds',""[240] call grad_aicommand_fnc_setWPTimeout;""],
+    ['300 Seconds',""[300] call grad_aicommand_fnc_setWPTimeout;""]
+]] call grad_aicommand_fnc_createSubMenu";
 call _create;

@@ -3,15 +3,9 @@ class grad_aicommand_contextmenu {
     movingEnable = true;
     enableSimulation = true;
 
+    onLoad = "missionNamespace setVariable ['grad_aicommand_contextmenu_isOpen',true]";
+    onUnload = "missionNamespace setVariable ['grad_aicommand_contextmenu_isOpen',false]";
+
     class ControlsBackground {};
     class Controls {};
 };
-
-/*class grad_aicommand_typemenu {
-    idd = grad_aicommand_contextmenu_TYPEMENU;
-    movingEnable = true;
-    enableSimulation = true;
-
-    class ControlsBackground {};
-    class Controls {};
-};*/
