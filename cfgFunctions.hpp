@@ -35,6 +35,7 @@ class GRAD_aicommand {
         class createButton {};
         class createSubmenu {};
         class createWaypointMenu {};
+        class deleteWP {};
         class openContextMenu {};
         class setWPSpeed {};
         class setWPTimeout {};

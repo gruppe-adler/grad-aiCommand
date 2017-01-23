@@ -10,4 +10,4 @@ _currentWaypoints = missionNamespace getVariable ["grad_aicommand_currentWaypoin
 [] call grad_aicommand_fnc_removeAllEHs;
 [] call grad_aicommand_fnc_deleteCurrentUnitMarkers;
 [] call grad_aicommand_fnc_deleteAllWaypointMarkers;
-/*[_currentUnit,_currentWaypoints] call grad_aicommand_fnc_executeWaypoints;*/
+[_currentUnit,_currentWaypoints] call grad_aicommand_fnc_executeWaypoints;

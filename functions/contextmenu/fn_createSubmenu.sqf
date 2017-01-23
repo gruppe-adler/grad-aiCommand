@@ -28,9 +28,7 @@ _yButton = 0;
 _xCG = _parentX + _parentW * 1.01;
 _yCG = _parentY;
 
-/*_parentGroup ctrlEnable false;*/
 _controlsGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars",_groupIDC,_parentGroup];
-_controlsGroup ctrlAddEventHandler ["MouseButtonDown",{_this call grad_aicommand_contextmenu_catchMouseClick}];
 _controlsGroup ctrlSetPosition [_xCG,_yCG,2,2];
 _controlsGroup ctrlCommit 0;
 
@@ -42,6 +40,6 @@ _create = {
 
 {
     _x params ["_text","_statement"];
-    _statement = _statement + " [] call grad_aicommand_fnc_updateContextMenu";
+    _statement = _statement + " [] call grad_aicommand_fnc_updateContextMenu;" + "[] call grad_aicommand_fnc_updateMap";
     call _create;
 } forEach _menuItems;

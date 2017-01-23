@@ -10,9 +10,10 @@ systemChat str _mousePosScreen;
 systemChat str _mousePosWorld;
 systemChat str _nearestWaypointID;
 
-if (_nearestWaypointID >= 0) then {
+// >0 because original position is a wp, but should not have a context menu
+if (_nearestWaypointID > 0) then {
     missionNamespace setVariable ["grad_aicommand_selectedWaypoint",_nearestWaypointID];
-    
+
     _wpPos = (_waypoints select _nearestWaypointID) select 0;
     _dialogPos = (findDisplay 12 displayCtrl 51) ctrlMapWorldToScreen _wpPos;
     [true,_mousePosScreen,_waypoints select _nearestWaypointID] call grad_aicommand_fnc_openContextMenu;

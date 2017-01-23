@@ -58,3 +58,13 @@ _statement = "[_this select 0, 'WAIT',[
     ['300 Seconds',""[300] call grad_aicommand_fnc_setWPTimeout;""]
 ]] call grad_aicommand_fnc_createSubMenu";
 call _create;
+
+_text = "DELETE WAYPOINT";
+_statement = "
+    grad_aicommand_isDeleteClick = true;
+    [{grad_aicommand_isDeleteClick = false}, [], 1] call CBA_fnc_waitAndExecute;
+    [] call grad_aicommand_fnc_deleteWP;
+    [] call grad_aicommand_fnc_updateMap;
+    [false] call grad_aicommand_fnc_openContextMenu;
+";
+call _create;
