@@ -11,6 +11,7 @@ class GRAD_aicommand {
         class deleteAllWaypointMarkers {};
         class deleteCurrentUnitMarkers {};
         class drawCurrentUnitMarkers {};
+        class findNearestWP {};
         class onMapSingleClick {};
         class onRightClick {};
         class openCommandWindow {};
@@ -25,5 +26,16 @@ class GRAD_aicommand {
         class deleteArrowMarker {};
         class executeWaypoints {};
         class initModule {postInit = 1;};
+    };
+
+    class contextmenu {
+        file = MODULES_DIRECTORY\grad-aicommand\functions\contextmenu;
+
+        class createButton {};
+        class createSubmenu {};
+        class createWaypointMenu {};
+        class openContextMenu {};
+        class setWPSpeed {};
+        class setWPType {};
     };
 };
