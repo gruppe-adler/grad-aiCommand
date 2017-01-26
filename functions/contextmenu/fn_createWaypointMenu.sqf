@@ -52,6 +52,7 @@ call _create;
 
 _text = format ["WAIT (%1 SECONDS)",_wpTimeout select 0];
 _statement = "[_this select 0, 'WAIT',[
+    ['0 Seconds',""[0] call grad_aicommand_fnc_setWPTimeout;""],
     ['30 Seconds',""[30] call grad_aicommand_fnc_setWPTimeout;""],
     ['60 Seconds',""[60] call grad_aicommand_fnc_setWPTimeout;""],
     ['90 Seconds',""[90] call grad_aicommand_fnc_setWPTimeout;""],
