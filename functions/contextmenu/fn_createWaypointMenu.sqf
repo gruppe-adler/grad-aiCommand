@@ -1,33 +1,36 @@
 systemChat "creating waypoint menu";
 
 #include "..\..\dialog\ui_toolkit.hpp"
+#include "..\..\dialog\commandwindow\defines.hpp"
 #include "..\..\dialog\contextmenu\defines.hpp"
 
-params ["_display","_dialogPos","_waypoint"];
+params ["_dialogPos","_waypoint"];
 
-_idc = grad_aicommand_contextmenu_WPCG + 1;
+_display = findDisplay grad_aicommand_commandwindow_DIALOG;
+_map = _display displayCtrl grad_aicommand_commandwindow_MAP;
+_controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
+
+
+_idc = grad_aicommand_contextmenu_GROUP + 1;
 _buttonW = grad_aicommand_contextmenu_ButtonW;
 _buttonH = grad_aicommand_contextmenu_ButtonH;
 _xButton = 0;
 _yButton = 0;
-_pos = _dialogPos;
-_pos params ["_xCG","_yCG"];
+_dialogPos params ["_xCG","_yCG"];
 _waypoint params ["_wpPos","_wpSpeed","_wpTimeout","_wpType","_wpStatements"];
 
-ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_WPCG);
 
-_parentGroup ctrlEnable false;
-_controlsGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars",grad_aicommand_contextmenu_WPCG];
-_controlsGroup ctrlAddEventHandler ["MouseButtonDown",{_this call grad_aicommand_contextmenu_catchMouseClick}];
-_controlsGroup ctrlSetPosition [_xCG,_yCG,2,2];
+_controlsGroup ctrlSetPosition [_xCG,_yCG,safezoneW,safeZoneH];
 _controlsGroup ctrlCommit 0;
+_map ctrlShow false;
+_map ctrlShow true;
+
 
 _create = {
     [_display,_idc,_controlsGroup,_text,[_xButton,_yButton,_buttonW,_buttonH],_statement] call grad_aicommand_fnc_createButton;
     _idc = _idc + 1;
     _yButton = _yButton + _buttonH*1.05;
 };
-
 
 _text = format ["TYPE (%1)",_wpType];
 _statement = "[_this select 0, 'TYPE',[

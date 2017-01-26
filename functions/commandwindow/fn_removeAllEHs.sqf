@@ -1,8 +1,10 @@
 systemChat "removeAllEHs";
 
-removeMissionEventHandler ["Map", grad_aicommand_mapEH];
+#include "..\..\dialog\ui_toolkit.hpp"
+#include "..\..\dialog\commandwindow\defines.hpp"
+
 onMapSingleClick "";
-(findDisplay 46) displayRemoveEventHandler ["MouseButtonUp",grad_aicommand_mouseButtonEH];
+(findDisplay grad_aicommand_commandwindow_DIALOG) displayRemoveEventHandler ["MouseButtonUp",grad_aicommand_mouseButtonEH];
 
 
 

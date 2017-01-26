@@ -1,10 +1,10 @@
 systemChat "creating sub menu";
 
 #include "..\..\dialog\ui_toolkit.hpp"
+#include "..\..\dialog\commandwindow\defines.hpp"
 #include "..\..\dialog\contextmenu\defines.hpp"
 
 params ["_parent","_mode","_menuItems"];
-(ctrlPosition _parent) params ["_parentX","_parentY","_parentW","_parentH"];
 
 _groupIDC = switch (_mode) do {
     case ("TYPE"): {grad_aicommand_contextmenu_TypeCG};
@@ -12,25 +12,23 @@ _groupIDC = switch (_mode) do {
     case ("WAIT"): {grad_aicommand_contextmenu_WaitCG};
 };
 
-_display = findDisplay grad_aicommand_contextmenu_DIALOG;
-_parentGroup = _display displayCtrl grad_aicommand_contextmenu_WPCG;
-(ctrlPosition _parentGroup) params ["_parentGroupX","_parentGroupY"];
+_display = findDisplay grad_aicommand_commandwindow_DIALOG;
+_controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
 
-ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_TypeCG);
-ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_SpeedCG);
-ctrlDelete (_display displayCtrl grad_aicommand_contextmenu_WaitCG);
+(ctrlPosition _parent) params ["_parentX","_parentY","_parentW","_parentH"];
+diag_log str (ctrlPosition _parent);
 
-_idc = grad_aicommand_contextmenu_TypeCG + 1;
+_idc = grad_aicommand_contextmenu_SUBMENU + 1;
+while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
+    ctrlDelete (_controlsGroup controlsGroupCtrl _idc);
+    _idc = _idc + 1;
+};
+
+_idc = grad_aicommand_contextmenu_SUBMENU + 1;
 _buttonW = grad_aicommand_contextmenu_ButtonW;
 _buttonH = grad_aicommand_contextmenu_ButtonH;
-_xButton = 0;
-_yButton = 0;
-_xCG = _parentX + _parentW * 1.01;
-_yCG = _parentY;
-
-_controlsGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars",_groupIDC,_parentGroup];
-_controlsGroup ctrlSetPosition [_xCG,_yCG,2,2];
-_controlsGroup ctrlCommit 0;
+_xButton = _parentX + _parentW * 1.01;
+_yButton = _parentY;
 
 _create = {
     [_display,_idc,_controlsGroup,_text,[_xButton,_yButton,_buttonW,_buttonH],_statement] call grad_aicommand_fnc_createButton;

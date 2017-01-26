@@ -7,13 +7,13 @@ class GRAD_aicommand {
         file = MODULES_DIRECTORY\grad-aicommand\functions\commandwindow;
 
         class addEHs {};
-        class closeCommandWindow {};
         class deleteAllWaypointMarkers {};
         class deleteCurrentUnitMarkers {};
         class drawCurrentUnitMarkers {};
         class findNearestWP {};
         class onMapSingleClick {};
         class onRightClick {};
+        class onUnload {};
         class openCommandWindow {};
         class removeAllEHs {};
         class updateMap {};
@@ -36,6 +36,7 @@ class GRAD_aicommand {
         class createSubmenu {};
         class createWaypointMenu {};
         class deleteWP {};
+        class hideContextMenuItems {};
         class openContextMenu {};
         class setWPSpeed {};
         class setWPTimeout {};

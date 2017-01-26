@@ -1,14 +1,16 @@
 systemChat "addEHs";
 
+#include "..\..\dialog\ui_toolkit.hpp"
+#include "..\..\dialog\commandwindow\defines.hpp"
 
-grad_aicommand_mapEH = addMissionEventHandler ["Map",{if !(_this select 0) then {[] call grad_aicommand_fnc_closeCommandWindow}}];
+params ["_mapCtrl"];
 
 onMapSingleClick {[_pos,_shift,_alt] call grad_aicommand_fnc_onMapSingleClick};
 
-grad_aicommand_mouseButtonEH = (findDisplay 46) displayAddEventHandler ["MouseButtonUp", {
+grad_aicommand_mouseButtonEH = _mapCtrl ctrlAddEventHandler ["MouseButtonUp", {
     params ["_control","_button"];
     if (_button == 1) then {
-        [] call grad_aicommand_fnc_onRightClick;
+        _this call grad_aicommand_fnc_onRightClick;
     };
     false
 }];

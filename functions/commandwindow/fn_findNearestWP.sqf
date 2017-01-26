@@ -1,7 +1,5 @@
 params ["_pos","_waypoints",["_maxDistance",100],["_excludedIDs",[-1]]];
 
-diag_log str _excludedIDs;
-
 _nearestWaypointID = -1;
 _distance = _maxDistance;
 {
