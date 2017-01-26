@@ -19,4 +19,4 @@ _map ctrlCommit 0;
 _contextmenu = _display ctrlCreate ["RscControlsGroupNoScrollbars",grad_aicommand_contextmenu_GROUP];
 _contextmenu ctrlShow false;
 
-[_map] call grad_aicommand_fnc_addEHs;
+[_display,_map] call grad_aicommand_fnc_addEHs;
