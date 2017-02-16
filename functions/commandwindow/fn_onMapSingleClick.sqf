@@ -1,5 +1,3 @@
-systemChat "onMapSingleClick";
-
 params ["_clickPos","_shift","_alt"];
 
 if (missionNamespace getVariable ['grad_aicommand_contextmenu_isOpen',false]) exitWith {};

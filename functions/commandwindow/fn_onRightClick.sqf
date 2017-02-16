@@ -1,5 +1,3 @@
-systemChat "onRightClick";
-
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
 
@@ -19,5 +17,5 @@ if (_nearestWaypointID > 0) then {
         missionNamespace setVariable ["grad_aicommand_selectedWaypoint",_nearestWaypointID];
         _dialogPos = _mapCtrl ctrlMapWorldToScreen _wpWorldPos;
         [true,_dialogPos,_waypoints select _nearestWaypointID] call grad_aicommand_fnc_openContextMenu;
-    };    
+    };
 };

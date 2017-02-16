@@ -1,5 +1,3 @@
-systemChat "creating waypoint menu";
-
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
 #include "..\..\dialog\contextmenu\defines.hpp"

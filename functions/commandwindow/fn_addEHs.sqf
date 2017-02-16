@@ -1,5 +1,3 @@
-systemChat "addEHs";
-
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
 

@@ -1,5 +1,3 @@
-systemChat "closeCommandWindow";
-
 _currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
 _currentWaypoints = missionNamespace getVariable ["grad_aicommand_currentWaypoints",[]];
 
