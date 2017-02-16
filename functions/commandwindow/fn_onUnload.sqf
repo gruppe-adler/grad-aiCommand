@@ -1,5 +1,5 @@
 _currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-_currentWaypoints = missionNamespace getVariable ["grad_aicommand_currentWaypoints",[]];
+_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
 
 [] call grad_aicommand_fnc_removeAllEHs;
 

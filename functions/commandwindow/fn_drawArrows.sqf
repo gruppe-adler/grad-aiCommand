@@ -1,6 +1,9 @@
 params ["_map"];
 
-_currentWaypoints = missionNamespace getVariable ["grad_aicommand_currentWaypoints",[]];
+_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
+_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
+
+_color = [_currentUnit] call grad_aicommand_fnc_getUnitColor;
 
 for [{_i=1}, {_i<count _currentWaypoints}, {_i=_i+1}] do {
     _lastWP = _currentWaypoints select (_i-1);
@@ -8,7 +11,7 @@ for [{_i=1}, {_i<count _currentWaypoints}, {_i=_i+1}] do {
     _lastWPPos = _lastWP select 0;
     _thisWPPos = _thisWP select 0;
 
-    _map drawArrow [_lastWPPos,_thisWPPos,[0,0,0,1]];
+    _map drawArrow [_lastWPPos,_thisWPPos,_color];
 
     _thisType = _thisWP select 3;
     if (_thisType == "CYCLE") then {

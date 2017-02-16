@@ -1,6 +1,7 @@
-params ["_unit","_waypoints"];
+params ["_unit","_player"];
 
 _group = group _unit;
+_currentWaypoints = _group getVariable ["grad_aicommand_currentWaypoints",[]];
 
 {
     _x params ["_pos","_speed","_timeout","_type","_statements"];
@@ -15,5 +16,5 @@ _group = group _unit;
     _wp setWaypointSpeed _speed;
     _wp setWaypointTimeout _timeout;
     _wp setWaypointType _type;
-    _wp setWaypointStatements _statements;
-} forEach _waypoints;
+    _wp setWaypointStatements [_statements select 0,_statements select 1];
+} forEach _currentWaypoints;

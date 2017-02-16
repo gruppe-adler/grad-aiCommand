@@ -5,7 +5,9 @@
 params ["_unit","_player"];
 
 missionNamespace setVariable ["grad_aicommand_currentUnit",_unit];
-missionNamespace setVariable ["grad_aicommand_currentWaypoints",[[getPos _unit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
+if (isNil {(group _unit) getVariable "grad_aicommand_currentWaypoints"}) then {
+    (group _unit) setVariable ["grad_aicommand_currentWaypoints",[[getPos _unit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
+};
 
 createDialog "grad_aicommand_commandwindow";
 _display = findDisplay grad_aicommand_commandwindow_DIALOG;

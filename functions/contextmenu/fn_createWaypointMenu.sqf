@@ -50,14 +50,27 @@ call _create;
 
 _text = format ["WAIT (%1 SECONDS)",_wpTimeout select 0];
 _statement = "[_this select 0, 'WAIT',[
-    ['0 Seconds',""[0] call grad_aicommand_fnc_setWPTimeout;""],
-    ['30 Seconds',""[30] call grad_aicommand_fnc_setWPTimeout;""],
-    ['60 Seconds',""[60] call grad_aicommand_fnc_setWPTimeout;""],
-    ['90 Seconds',""[90] call grad_aicommand_fnc_setWPTimeout;""],
-    ['120 Seconds',""[120] call grad_aicommand_fnc_setWPTimeout;""],
-    ['180 Seconds',""[180] call grad_aicommand_fnc_setWPTimeout;""],
-    ['240 Seconds',""[240] call grad_aicommand_fnc_setWPTimeout;""],
-    ['300 Seconds',""[300] call grad_aicommand_fnc_setWPTimeout;""]
+    ['0s',""[0] call grad_aicommand_fnc_setWPTimeout;""],
+    ['30s',""[30] call grad_aicommand_fnc_setWPTimeout;""],
+    ['60s',""[60] call grad_aicommand_fnc_setWPTimeout;""],
+    ['90s',""[90] call grad_aicommand_fnc_setWPTimeout;""],
+    ['120s',""[120] call grad_aicommand_fnc_setWPTimeout;""],
+    ['180s',""[180] call grad_aicommand_fnc_setWPTimeout;""],
+    ['240s',""[240] call grad_aicommand_fnc_setWPTimeout;""],
+    ['300s',""[300] call grad_aicommand_fnc_setWPTimeout;""]
+]] call grad_aicommand_fnc_createSubMenu";
+call _create;
+
+_text = format ["ACTION (%1)",_wpStatements select 2];
+_statement = "[_this select 0, 'STATEMENT',[
+    ['NONE',""['true','','NONE'] call grad_aicommand_fnc_setWPStatement;""],
+    ['SEARCH NEARBY',""['true','[group this] call CBA_fnc_searchNearby','SEARCH NEARBY'] call grad_aicommand_fnc_setWPStatement;""],
+    ['DEFEND',""['true','[group this] call CBA_fnc_taskDefend','DEFEND'] call grad_aicommand_fnc_setWPStatement;""],
+    ['GARRISON',""['true','[group this,getPos this] call grad_aicommand_fnc_waypointGarrison','GARRISON'] call grad_aicommand_fnc_setWPStatement;""],
+    ['RANDOM PATROL (50m)',""['true','[group this,getPos this,50] call CBA_fnc_taskPatrol','PATROL (50m)'] call grad_aicommand_fnc_setWPStatement;""],
+    ['RANDOM PATROL (100m)',""['true','[group this,getPos this,100] call CBA_fnc_taskPatrol','PATROL (100m)'] call grad_aicommand_fnc_setWPStatement;""],
+    ['RANDOM PATROL (200m)',""['true','[group this,getPos this,200] call CBA_fnc_taskPatrol','PATROL (200m)'] call grad_aicommand_fnc_setWPStatement;""],
+    ['RANDOM PATROL (400m)',""['true','[group this,getPos this,400] call CBA_fnc_taskPatrol','PATROL (400m)'] call grad_aicommand_fnc_setWPStatement;""]
 ]] call grad_aicommand_fnc_createSubMenu";
 call _create;
 

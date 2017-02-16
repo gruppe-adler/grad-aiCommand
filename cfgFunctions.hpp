@@ -20,8 +20,17 @@ class GRAD_aicommand {
     class common {
         file = MODULES_DIRECTORY\grad-aicommand\functions\common;
 
+        class canGiveCommands {};
         class executeWaypoints {};
+        class getUnitColor {};
         class initModule {postInit = 1;};
+        class joinNearestGroup {};
+        class leaveGroup {};
+        class setCanGiveCommands {};
+        class setCanReceiveCommands {};
+        class setGivePermissionLevel {};
+        class setReceivePermissionLevel {};
+        class waypointGarrison {};
     };
 
     class contextmenu {
@@ -35,6 +44,7 @@ class GRAD_aicommand {
         class hideContextMenuItems {};
         class openContextMenu {};
         class setWPSpeed {};
+        class setWPStatement {};
         class setWPTimeout {};
         class setWPType {};
         class updateContextMenu {};

@@ -7,10 +7,11 @@ ctrlPosition (_display displayCtrl grad_aicommand_contextmenu_GROUP) params ["_x
 
 /*[false] call grad_aicommand_fnc_openContextMenu;*/
 
-_waypoints = missionNamespace getVariable ["grad_aicommand_currentWaypoints",[]];
+_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
+_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
 _wpIndex = missionNamespace getVariable ["grad_aicommand_selectedWaypoint",-1];
 if (_wpIndex < 0) exitWith {};
-_wp = _waypoints select _wpIndex;
+_wp = _currentWaypoints select _wpIndex;
 
 
 [true,[_x,_y],_wp] call grad_aicommand_fnc_openContextMenu;

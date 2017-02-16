@@ -8,6 +8,7 @@ _groupIDC = switch (_mode) do {
     case ("TYPE"): {grad_aicommand_contextmenu_TypeCG};
     case ("SPEED"): {grad_aicommand_contextmenu_SpeedCG};
     case ("WAIT"): {grad_aicommand_contextmenu_WaitCG};
+    case ("STATEMENT"): {grad_aicommand_contextmenu_StatementCG};
 };
 
 _display = findDisplay grad_aicommand_commandwindow_DIALOG;
