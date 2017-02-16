@@ -36,6 +36,6 @@ _create = {
 
 {
     _x params ["_text","_statement"];
-    _statement = _statement + " [] call grad_aicommand_fnc_updateContextMenu;" + "[] call grad_aicommand_fnc_updateMap";
+    _statement = _statement + " [] call grad_aicommand_fnc_updateContextMenu";
     call _create;
 } forEach _menuItems;

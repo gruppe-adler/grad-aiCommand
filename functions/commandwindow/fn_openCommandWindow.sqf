@@ -5,9 +5,7 @@
 params ["_unit","_player"];
 
 missionNamespace setVariable ["grad_aicommand_currentUnit",_unit];
-missionNamespace setVariable ["grad_aicommand_currentUnitMarkers",[_unit] call grad_aicommand_fnc_drawCurrentUnitMarkers];
 missionNamespace setVariable ["grad_aicommand_currentWaypoints",[[getPos _unit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
-missionNamespace setVariable ["grad_aicommand_currentArrowMarkers",[]];
 
 createDialog "grad_aicommand_commandwindow";
 _display = findDisplay grad_aicommand_commandwindow_DIALOG;
@@ -18,3 +16,6 @@ _contextmenu = _display ctrlCreate ["RscControlsGroupNoScrollbars",grad_aicomman
 _contextmenu ctrlShow false;
 
 [_display,_map] call grad_aicommand_fnc_addEHs;
+
+_map ctrlAddEventHandler ["Draw",{_this call grad_aicommand_fnc_drawArrows}];
+_map ctrlAddEventHandler ["Draw",{_this call grad_aicommand_fnc_drawCurrentUnits}];
