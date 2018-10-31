@@ -1,13 +1,14 @@
+#include "script_component.hpp"
+
 params ["_speed"];
 
-_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
-_wpIndex = missionNamespace getVariable ["grad_aicommand_selectedWaypoint",-1];
+private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
+if (isNull _currentUnit) exitWith {};
 
-if (_wpIndex < 0) exitWith {};
-
-_wp = _currentWaypoints select _wpIndex;
+private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
+if (count _currentWaypoint == 0) exitWith {};
 
 if (_speed in ["UNCHANGED","LIMITED","NORMAL","FULL"]) then {
-    _wp set [1,_speed];
+    [_currentWaypoint,_speed] remoteExecCall ["setWaypointSpeed",2,false];
+    /* _currentWaypoint setWaypointSpeed _speed; */
 };

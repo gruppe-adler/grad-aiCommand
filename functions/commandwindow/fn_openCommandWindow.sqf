@@ -30,10 +30,6 @@ if (_unit == _player) then {
     GVAR(currentUnit) = _unit;
     (group _unit) setVariable [QGVAR(isBeingEdited),true,true];
 
-    if (isNil {(group _unit) getVariable QGVAR(currentWaypoints)}) then {
-        (group _unit) setVariable [QGVAR(currentWaypoints),[[getPos _unit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
-    };
-
     _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawCurrentUnits)}];
 };
 

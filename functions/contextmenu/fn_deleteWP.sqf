@@ -1,19 +1,27 @@
+#include "script_component.hpp"
+
 params [["_mode","SINGLE"]];
 
-_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
+private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
+if (isNull _currentUnit) exitWith {};
+
+private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
+if (count _currentWaypoint == 0) exitWith {};
+
+private _group = group _currentUnit;
+private _waypointStatementNames = _group getVariable [QGVAR(waypointStatementNames),[]];
 
 switch (_mode) do {
     case ("SINGLE"): {
-        _wpIndex = missionNamespace getVariable ["grad_aicommand_selectedWaypoint",-1];
-        if (_wpIndex < 0) exitWith {};
-        _currentWaypoints deleteAt _wpIndex;
+        deleteWaypoint _currentWaypoint;
+        _waypointStatementNames deleteAt (_currentWaypoint select 1);
+        _group setVariable [QGVAR(waypointStatementNames),_waypointStatementNames,true];
     };
 
     case ("ALL"): {
-        while {count _currentWaypoints > 1} do {
-            _currentWaypoints deleteAt 1;
+        while {(count waypoints _group) > 0} do {
+            deleteWaypoint ((waypoints _group) select 0);
         };
-        _currentWaypoints set [0,[getPos _currentUnit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]];
+        _group setVariable [QGVAR(waypointStatementNames),[],true];
     };
 };

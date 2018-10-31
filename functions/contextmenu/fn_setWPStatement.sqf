@@ -1,8 +1,17 @@
-_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
-_wpIndex = missionNamespace getVariable ["grad_aicommand_selectedWaypoint",-1];
-if (_wpIndex < 0) exitWith {};
+#include "script_component.hpp"
 
-_wp = _currentWaypoints select _wpIndex;
+params ["_condition","_statement","_statementName"];
 
-_wp set [4,_this];
+private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
+if (isNull _currentUnit) exitWith {};
+
+private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
+if (count _currentWaypoint == 0) exitWith {};
+
+_currentWaypoint params ["_group","_waypointID"];
+private _wpStatementNames = _group getVariable [QGVAR(waypointStatementNames),[]];
+
+_wpStatementNames set [_waypointID,_statementName];
+_group setVariable [QGVAR(waypointStatementNames),_wpStatementNames,true];
+
+_currentWaypoint setWaypointStatements [_condition,_statement];

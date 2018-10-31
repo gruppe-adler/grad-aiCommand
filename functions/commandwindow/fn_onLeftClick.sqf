@@ -26,15 +26,6 @@ if (_clickDistance < 0.04 && {!isNull _nearestGroup}) then {
 
     _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
     _currentGroup = group _currentUnit;
-
-    _currentGroup setVariable [QGVAR(isBeingEdited),true,true];
-
-    if (isNil {_currentGroup getVariable QGVAR(currentWaypoints)}) then {
-        _currentGroup setVariable [QGVAR(currentWaypoints),[[getPos _currentUnit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
-    };
-
-    _currentWaypoints = _currentGroup getVariable [QGVAR(currentWaypoints),[]];
-    _currentWaypoints pushBack [_mousePosWorld,"UNCHANGED",[0,0,0],"MOVE",["true","","NONE"]];
-
-    [_currentUnit] call FUNC(executeWaypoints);
+    _currentGroup addWaypoint [_mousePosWorld,0];
+    [(units _currentGroup)] remoteExecCall ["ace_ai_fnc_unGarrison",0,false];
 };

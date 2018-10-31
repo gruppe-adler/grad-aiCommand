@@ -1,12 +1,13 @@
+#include "script_component.hpp"
+
 params ["_type"];
 
-_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
-_wpIndex = missionNamespace getVariable ["grad_aicommand_selectedWaypoint",-1];
-if (_wpIndex < 0) exitWith {};
+private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
+if (isNull _currentUnit) exitWith {};
 
-_wp = _currentWaypoints select _wpIndex;
+private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
+if (count _currentWaypoint == 0) exitWith {};
 
 if (_type in ["MOVE","CYCLE","GETIN NEAREST","GETOUT"]) then {
-    _wp set [3,_type];
+    [_currentWaypoint,_type] remoteExecCall ["setWaypointType",2,false];
 };
