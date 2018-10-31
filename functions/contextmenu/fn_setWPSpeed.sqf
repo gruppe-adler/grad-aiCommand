@@ -10,5 +10,4 @@ if (count _currentWaypoint == 0) exitWith {};
 
 if (_speed in ["UNCHANGED","LIMITED","NORMAL","FULL"]) then {
     [_currentWaypoint,_speed] remoteExecCall ["setWaypointSpeed",2,false];
-    /* _currentWaypoint setWaypointSpeed _speed; */
 };

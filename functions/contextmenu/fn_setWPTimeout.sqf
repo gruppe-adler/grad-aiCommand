@@ -8,4 +8,4 @@ if (isNull _currentUnit) exitWith {};
 private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
 if (count _currentWaypoint == 0) exitWith {};
 
-[_waypoint,[_timeout,_timeout,_timeout]] remoteExecCall ["setWaypointTimeout",2,false];
+[_currentWaypoint,[_timeout,_timeout,_timeout]] remoteExecCall ["setWaypointTimeout",2,false];

@@ -4,9 +4,9 @@
 
 params ["_open",["_dialogPos",[0,0]],["_waypoint",[]]];
 
-_display = findDisplay grad_aicommand_commandwindow_DIALOG;
-_controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
-_map = _display displayCtrl grad_aicommand_commandwindow_MAP;
+private _display = findDisplay grad_aicommand_commandwindow_DIALOG;
+private _controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
+private _map = _display displayCtrl grad_aicommand_commandwindow_MAP;
 
 if (_open) then {
 
