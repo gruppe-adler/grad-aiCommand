@@ -2,15 +2,11 @@
 #include "..\..\dialog\commandwindow\defines.hpp"
 #include "..\..\dialog\contextmenu\defines.hpp"
 
+#include "script_component.hpp"
+
 params ["_unit","_player"];
 
-(group _unit) setVariable ["grad_aicommand_isBeingEdited",true,true];
-missionNamespace setVariable ["grad_aicommand_currentUnit",_unit];
-if (isNil {(group _unit) getVariable "grad_aicommand_currentWaypoints"}) then {
-    (group _unit) setVariable ["grad_aicommand_currentWaypoints",[[getPos _unit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
-};
-
-createDialog "grad_aicommand_commandwindow";
+createDialog QGVAR(commandwindow);
 _display = findDisplay grad_aicommand_commandwindow_DIALOG;
 _map = _display ctrlCreate ["RscMapControl",grad_aicommand_commandwindow_MAP];
 _map ctrlSetPosition [safeZoneX,safeZoneY,safeZoneW,safeZoneH];
@@ -18,7 +14,29 @@ _map ctrlCommit 0;
 _contextmenu = _display ctrlCreate ["RscControlsGroupNoScrollbars",grad_aicommand_contextmenu_GROUP];
 _contextmenu ctrlShow false;
 
-[_display,_map] call grad_aicommand_fnc_addEHs;
 
-_map ctrlAddEventHandler ["Draw",{_this call grad_aicommand_fnc_drawArrows}];
-_map ctrlAddEventHandler ["Draw",{_this call grad_aicommand_fnc_drawCurrentUnits}];
+
+// highcommand mode
+if (_unit == _player) then {
+    GVAR(currentUnit) = objNull;
+    GVAR(highcommandSide) = side _unit;
+    _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawEditableGroups)}];
+
+
+
+// normal edit mode
+} else {
+
+    GVAR(currentUnit) = _unit;
+    (group _unit) setVariable [QGVAR(isBeingEdited),true,true];
+
+    if (isNil {(group _unit) getVariable QGVAR(currentWaypoints)}) then {
+        (group _unit) setVariable [QGVAR(currentWaypoints),[[getPos _unit,"UNCHANGED",[0,0,0],"MOVE",["true",""]]]];
+    };
+
+    _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawCurrentUnits)}];
+};
+
+
+_map ctrlAddEventHandler ["Draw",{_this call FUNC(drawArrows)}];
+[_display,_map] call FUNC(addEHs);

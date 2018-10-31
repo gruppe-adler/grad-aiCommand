@@ -1,10 +1,11 @@
+#include "script_component.hpp"
+
 params ["_map"];
 
-_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-
+private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
 if (isNull _currentUnit) exitWith {};
 
-_color = [_currentUnit] call grad_aicommand_fnc_getUnitColor;
+private _color = [side _currentUnit] call FUNC(getSideColor);
 
 {
     _map drawIcon ["iconMan",_color,getPos _x,24,24,getDir _x,"",0,0.03,'TahomaB','right'];

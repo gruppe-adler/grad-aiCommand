@@ -1,9 +1,12 @@
+#include "script_component.hpp"
+
 params ["_map"];
 
-_currentUnit = missionNamespace getVariable ["grad_aicommand_currentUnit",objNull];
-_currentWaypoints = (group _currentUnit) getVariable ["grad_aicommand_currentWaypoints",[]];
+private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
+if (isNull _currentUnit) exitWith {};
 
-_color = [_currentUnit] call grad_aicommand_fnc_getUnitColor;
+private _currentWaypoints = (group _currentUnit) getVariable [QGVAR(currentWaypoints),[]];
+private _color = [side _currentUnit] call FUNC(getSideColor);
 
 for [{_i=1}, {_i<count _currentWaypoints}, {_i=_i+1}] do {
     _lastWP = _currentWaypoints select (_i-1);

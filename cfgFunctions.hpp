@@ -9,8 +9,10 @@ class GRAD_aicommand {
         class addEHs {};
         class drawArrows {};
         class drawCurrentUnits {};
+        class drawEditableGroups {};
+        class findNearestEditableGroup {};
         class findNearestWP {};
-        class onMapSingleClick {};
+        class onLeftClick {};
         class onRightClick {};
         class onUnload {};
         class openCommandWindow {};
@@ -21,8 +23,9 @@ class GRAD_aicommand {
         file = MODULES_DIRECTORY\grad-aicommand\functions\common;
 
         class canGiveCommands {};
+        class canUseHighcommand {};
         class executeWaypoints {};
-        class getUnitColor {};
+        class getSideColor {};
         class initModule {postInit = 1;};
         class joinNearestGroup {};
         class leaveGroup {};
