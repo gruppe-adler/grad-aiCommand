@@ -2,8 +2,6 @@
 
 params ["_map"];
 
-private _editableGroups = allGroups select {side _x == GVAR(highcommandSide) && {count units _x > 0}};
-
 private _color = [GVAR(highcommandSide)] call FUNC(getSideColor);
 {
     _pos = getPos leader _x;
@@ -24,20 +22,18 @@ private _color = [GVAR(highcommandSide)] call FUNC(getSideColor);
     ];
 
     // draw selector icon
-    if ({isPlayer _x} count units _x == 0) then {
-        _icon = ["\A3\ui_f\data\map\groupicons\selector_selectable_ca.paa","\A3\ui_f\data\map\groupicons\selector_selected_ca.paa"] select (leader _x == GVAR(currentUnit));
-        _map drawIcon [
-            _icon,
-            [1,1,1,1],
-            _pos,
-            40,
-            40,
-            0,
-            "",
-            0,
-            0.04,
-            'TahomaB',
-            'right'
-        ];
-    };
-} forEach _editableGroups;
+    _icon = ["\A3\ui_f\data\map\groupicons\selector_selectable_ca.paa","\A3\ui_f\data\map\groupicons\selector_selected_ca.paa"] select (leader _x == GVAR(currentUnit));
+    _map drawIcon [
+        _icon,
+        [1,1,1,1],
+        _pos,
+        40,
+        40,
+        0,
+        "",
+        0,
+        0.04,
+        'TahomaB',
+        'right'
+    ];
+} forEach GVAR(editableGroups);

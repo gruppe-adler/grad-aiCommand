@@ -26,6 +26,7 @@ if (_clickDistance < 0.04 && {!isNull _nearestGroup}) then {
 
     _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
     _currentGroup = group _currentUnit;
-    _currentGroup addWaypoint [_mousePosWorld,0];
+    _wp = _currentGroup addWaypoint [_mousePosWorld,0];
+    _wp setWaypointType "MOVE";
     [(units _currentGroup)] remoteExecCall ["ace_ai_fnc_unGarrison",0,false];
 };

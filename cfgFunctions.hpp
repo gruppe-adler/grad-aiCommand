@@ -17,16 +17,17 @@ class GRAD_aicommand {
         class onUnload {};
         class openCommandWindow {};
         class removeAllEHs {};
+        class updateEditableGroups {};
     };
 
     class common {
         file = MODULES_DIRECTORY\grad-aicommand\functions\common;
 
         class canGiveCommands {};
-        class canUseHighcommand {};
         class executeWaypoints {};
         class getSideColor {};
         class initModule {postInit = 1;};
+        class isEditableGroup {};
         class joinNearestGroup {};
         class leaveGroup {};
         class setCanGiveCommands {};
