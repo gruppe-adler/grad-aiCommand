@@ -1,8 +1,8 @@
 #include "script_component.hpp"
 
-private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
-_currentUnit setVariable [QGVAR(selectedWaypoint),nil];
+private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNull];
+_currentGroup setVariable [QGVAR(selectedWaypoint),nil];
 
-missionNamespace setVariable [QGVAR(currentUnit),nil];
+missionNamespace setVariable [QGVAR(currentGroup),nil];
 
 [] call FUNC(removeAllEHs);

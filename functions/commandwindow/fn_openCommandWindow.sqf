@@ -20,14 +20,14 @@ GVAR(highcommandSide) = side _player;
 // highcommand mode
 if (_unit == _player) then {
     _editMode = 0;
-    GVAR(currentUnit) = objNull;
+    GVAR(currentGroup) = grpNull;
     GVAR(editableGroups) = [];
     [] call FUNC(updateEditableGroups);
 
 // normal edit mode
 } else {
     _editMode = 1;
-    GVAR(currentUnit) = _unit;
+    GVAR(currentGroup) = group _unit;
     GVAR(editableGroups) = [group _unit];
 };
 

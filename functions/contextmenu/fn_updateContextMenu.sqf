@@ -9,10 +9,10 @@ ctrlPosition (_display displayCtrl grad_aicommand_contextmenu_GROUP) params ["_x
 
 /*[false] call grad_aicommand_fnc_openContextMenu;*/
 
-private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
-if (isNull _currentUnit) exitWith {};
+private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNull];
+if (isNull _currentGroup) exitWith {};
 
-private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
+private _currentWaypoint = _currentGroup getVariable [QGVAR(selectedWaypoint),[]];
 if (count _currentWaypoint == 0) exitWith {};
 
 [true,[_x,_y],_currentWaypoint] call FUNC(openContextMenu);

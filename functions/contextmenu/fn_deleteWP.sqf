@@ -2,10 +2,10 @@
 
 params [["_mode","SINGLE"]];
 
-private _currentUnit = missionNamespace getVariable [QGVAR(currentUnit),objNull];
-if (isNull _currentUnit) exitWith {};
+private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNull];
+if (isNull _currentGroup) exitWith {};
 
-private _currentWaypoint = _currentUnit getVariable [QGVAR(selectedWaypoint),[]];
+private _currentWaypoint = _currentGroup getVariable [QGVAR(selectedWaypoint),[]];
 if (count _currentWaypoint == 0) exitWith {};
 
 
@@ -15,9 +15,8 @@ switch (_mode) do {
     };
 
     case ("ALL"): {
-        _group = group _currentUnit;
-        while {(count waypoints _group) > 0} do {
-            deleteWaypoint ((waypoints _group) select 0);
+        while {(count waypoints _currentGroup) > 0} do {
+            deleteWaypoint ((waypoints _currentGroup) select 0);
         };
     };
 };
