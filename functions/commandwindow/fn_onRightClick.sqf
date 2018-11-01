@@ -18,7 +18,6 @@ private _nearestGroup = [_mousePosWorld] call FUNC(findNearestEditableGroup);
 if (count _nearestWaypoint == 0 && isNull _nearestGroup) exitWith {};
 
 private _fnc_wp = {
-
     _wpWorldPos = waypointPosition _nearestWaypoint;
     _wpScreenPos = _mapCtrl ctrlMapWorldToScreen _wpWorldPos;
 
@@ -33,10 +32,9 @@ private _fnc_grp = {
     _grpWorldPos = getPos leader _nearestGroup;
     _grpScreenPos = _mapCtrl ctrlMapWorldToScreen _grpWorldPos;
 
-    GVAR(currentGroup) = _nearestGroup;
-
     _clickDistance = _grpScreenPos distance [_x,_y];
     if (_clickDistance < 0.02) then {
+        GVAR(currentGroup) = _nearestGroup;
         [true,_grpScreenPos,_nearestGroup] call FUNC(openContextMenu);
     };
 };
