@@ -17,6 +17,8 @@ _contextmenu ctrlShow false;
 
 GVAR(highcommandSide) = side _player;
 
+if (isNil QGVAR(individualUnitsGroups)) then {GVAR(individualUnitsGroups) = []};
+
 // highcommand mode
 if (_unit == _player) then {
     _editMode = 0;
@@ -32,5 +34,6 @@ if (_unit == _player) then {
 };
 
 _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawEditableGroups)}];
+_map ctrlAddEventHandler ["Draw",{_this call FUNC(drawIndividualUnits)}];
 _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawArrows)}];
 [_display,_map] call FUNC(addEHs);

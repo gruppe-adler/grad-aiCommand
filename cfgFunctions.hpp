@@ -8,8 +8,8 @@ class GRAD_aicommand {
 
         class addEHs {};
         class drawArrows {};
-        class drawCurrentUnits {};
         class drawEditableGroups {};
+        class drawIndividualUnits {};
         class findNearestEditableGroup {};
         class findNearestWP {};
         class onLeftClick {};
@@ -17,6 +17,7 @@ class GRAD_aicommand {
         class onUnload {};
         class openCommandWindow {};
         class removeAllEHs {};
+        class setGroupIndividualUnits {};
         class updateEditableGroups {};
     };
 
@@ -43,6 +44,7 @@ class GRAD_aicommand {
 
         class catchMouseClick {};
         class createButton {};
+        class createGroupMenu {};
         class createSubmenu {};
         class createWaypointMenu {};
         class deleteWP {};

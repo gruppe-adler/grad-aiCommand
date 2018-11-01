@@ -13,19 +13,40 @@ if (isNull _currentGroup) exitWith {};
 private _nearestWaypoint = [_mousePosWorld, _currentGroup] call FUNC(findNearestWP);
 private _nearestGroup = [_mousePosWorld] call FUNC(findNearestEditableGroup);
 
-if (count _nearestWaypoint == 0 && isNull _nearestGroup) exitWith {};
-
-private _wpWorldPos = waypointPosition _nearestWaypoint;
 
 // null waypoint is empty array
-if (count _nearestWaypoint > 0) then {
+if (count _nearestWaypoint == 0 && isNull _nearestGroup) exitWith {};
 
+private _fnc_wp = {
+
+    _wpWorldPos = waypointPosition _nearestWaypoint;
     _wpScreenPos = _mapCtrl ctrlMapWorldToScreen _wpWorldPos;
-    _clickDistance = _wpScreenPos distance [_x,_y];
 
+    _clickDistance = _wpScreenPos distance [_x,_y];
     if (_clickDistance < 0.02) then {
         _currentGroup setVariable [QGVAR(selectedWaypoint),_nearestWaypoint];
-        _dialogPos = _mapCtrl ctrlMapWorldToScreen _wpWorldPos;
-        [true,_dialogPos,_nearestWaypoint] call FUNC(openContextMenu);
+        [true,_wpScreenPos,_nearestWaypoint] call FUNC(openContextMenu);
     };
+};
+
+private _fnc_grp = {
+    _grpWorldPos = getPos leader _nearestGroup;
+    _grpScreenPos = _mapCtrl ctrlMapWorldToScreen _grpWorldPos;
+
+    GVAR(currentGroup) = _nearestGroup;
+
+    _clickDistance = _grpScreenPos distance [_x,_y];
+    if (_clickDistance < 0.02) then {
+        [true,_grpScreenPos,_nearestGroup] call FUNC(openContextMenu);
+    };
+};
+
+
+if (count _nearestWaypoint > 0 && !isNull _nearestGroup) then {
+    _wpWorldPos = waypointPosition _nearestWaypoint;
+    _grpWorldPos = getPos leader _nearestGroup;
+    if (_wpWorldPos distance2D _mousePosWorld < _grpWorldPos distance2D _mousePosWorld) then _fnc_wp else _fnc_grp;
+
+} else {
+    if (count _nearestWaypoint > 0) then _fnc_wp else _fnc_grp;
 };
