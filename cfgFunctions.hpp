@@ -28,6 +28,7 @@ class GRAD_aicommand {
         class executeWaypoints {};
         class getSideColor {};
         class getUnitRoleAbbreviation {};
+        class groupIdExists {};
         class initModule {postInit = 1;};
         class isEditableGroup {};
         class joinNearestGroup {};
@@ -53,6 +54,7 @@ class GRAD_aicommand {
         class deleteWP {};
         class hideContextMenuItems {};
         class openContextMenu {};
+        class renameGroupDialog {};
         class setWPSpeed {};
         class setWPStatement {};
         class setWPTimeout {};

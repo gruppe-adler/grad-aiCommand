@@ -7,11 +7,11 @@ params ["_dialogPos","_waypoint"];
 
 if (count _waypoint == 0) exitWith {};
 
-private _display = findDisplay grad_aicommand_commandwindow_DIALOG;
-private _map = _display displayCtrl grad_aicommand_commandwindow_MAP;
-private _controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
+private _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
+private _map = _display displayCtrl GRAD_AICOMMAND_COMMANDWINDOW_MAP;
+private _controlsGroup = _display displayCtrl GRAD_AICOMMAND_CONTEXTMENU_GROUP;
 
-private _idc = grad_aicommand_contextmenu_GROUP + 1;
+private _idc = GRAD_AICOMMAND_CONTEXTMENU_GROUP + 1;
 private _buttonW = grad_aicommand_contextmenu_ButtonW;
 private _buttonH = grad_aicommand_contextmenu_ButtonH;
 private _xButton = 0;

@@ -9,8 +9,8 @@ if (_button == 1) exitWith {true};
 
 private _isOverContextMenu = false;
 
-private _controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
-private _idc = grad_aicommand_contextmenu_GROUP + 1;
+private _controlsGroup = _display displayCtrl GRAD_AICOMMAND_CONTEXTMENU_GROUP;
+private _idc = GRAD_AICOMMAND_CONTEXTMENU_GROUP + 1;
 ctrlPosition _controlsGroup params ["_ctrlCgX","_ctrlCgY"];
 
 while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
@@ -38,7 +38,7 @@ while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
 
 if (_isOverContextMenu) exitWith {true};
 
-_idc = grad_aicommand_contextmenu_SUBMENU + 1;
+_idc = GRAD_AICOMMAND_CONTEXTMENU_SUBMENU + 1;
 while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
 
     // see above

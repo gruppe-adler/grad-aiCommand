@@ -12,18 +12,18 @@ params ["_parent","_mode","_menuItems"];
     case ("STATEMENT"): {grad_aicommand_contextmenu_StatementCG};
 }; */
 
-private _display = findDisplay grad_aicommand_commandwindow_DIALOG;
-private _controlsGroup = _display displayCtrl grad_aicommand_contextmenu_GROUP;
+private _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
+private _controlsGroup = _display displayCtrl GRAD_AICOMMAND_CONTEXTMENU_GROUP;
 
 (ctrlPosition _parent) params ["_parentX","_parentY","_parentW","_parentH"];
 
-private _idc = grad_aicommand_contextmenu_SUBMENU + 1;
+private _idc = GRAD_AICOMMAND_CONTEXTMENU_SUBMENU + 1;
 while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
     ctrlDelete (_controlsGroup controlsGroupCtrl _idc);
     _idc = _idc + 1;
 };
 
-private _idc = grad_aicommand_contextmenu_SUBMENU + 1;
+private _idc = GRAD_AICOMMAND_CONTEXTMENU_SUBMENU + 1;
 private _buttonW = grad_aicommand_contextmenu_ButtonW;
 private _buttonH = grad_aicommand_contextmenu_ButtonH;
 private _xButton = _parentX + _parentW * 1.01;

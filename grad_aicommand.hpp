@@ -8,3 +8,6 @@
 
 #include "dialog\contextmenu\defines.hpp"
 #include "dialog\contextmenu\dialog.hpp"
+
+#include "dialog\renameGroup\defines.hpp"
+#include "dialog\renameGroup\dialog.hpp"
