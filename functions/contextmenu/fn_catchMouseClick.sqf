@@ -1,6 +1,5 @@
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
-#include "..\..\dialog\contextmenu\defines.hpp"
 #include "script_component.hpp"
 
 params ["_display","_button","_xPos","_yPos","_shift","_ctrl","_alt"];

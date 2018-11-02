@@ -9,6 +9,11 @@
 #define GRAD_AICOMMAND_SPACER_Y                     (Y_SCALE * 0.002)
 #define GRAD_AICOMMAND_PADDING_X                    (X_SCALE * 0.008)
 
+
+#define GRAD_AICOMMAND_CONTEXTMENU_BUTTONW      (0.25 * X_SCALE)
+#define GRAD_AICOMMAND_CONTEXTMENU_BUTTONH      (0.03 * Y_SCALE)
+
+
 #define GRAD_AICOMMAND_RENAMEGROUP_W                (X_SCALE * 0.40)
 #define GRAD_AICOMMAND_RENAMEGROUP_H                (Y_SCALE * 0.05)
 

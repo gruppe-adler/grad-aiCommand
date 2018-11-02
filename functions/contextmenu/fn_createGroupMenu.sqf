@@ -1,6 +1,5 @@
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
-#include "..\..\dialog\contextmenu\defines.hpp"
 #include "script_component.hpp"
 
 params ["_dialogPos","_group"];
@@ -12,8 +11,8 @@ private _map = _display displayCtrl GRAD_AICOMMAND_COMMANDWINDOW_MAP;
 private _controlsGroup = _display displayCtrl GRAD_AICOMMAND_CONTEXTMENU_GROUP;
 
 private _idc = GRAD_AICOMMAND_CONTEXTMENU_GROUP + 1;
-private _buttonW = grad_aicommand_contextmenu_ButtonW;
-private _buttonH = grad_aicommand_contextmenu_ButtonH;
+private _buttonW = GRAD_AICOMMAND_CONTEXTMENU_BUTTONW;
+private _buttonH = GRAD_AICOMMAND_CONTEXTMENU_BUTTONH;
 private _xButton = 0;
 private _yButton = 0;
 

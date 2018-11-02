@@ -1,6 +1,5 @@
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
-#include "..\..\dialog\contextmenu\defines.hpp"
 
 _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
 _map = _display displayCtrl GRAD_AICOMMAND_COMMANDWINDOW_MAP;

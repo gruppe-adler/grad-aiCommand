@@ -1,5 +1,4 @@
 #include "..\..\dialog\ui_toolkit.hpp"
-#include "..\..\dialog\contextmenu\defines.hpp"
 
 params ["_display","_idc","_controlsGroup","_pos","_statement",["_text",""]];
 

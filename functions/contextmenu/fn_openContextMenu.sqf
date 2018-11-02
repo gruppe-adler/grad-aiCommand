@@ -1,6 +1,5 @@
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
-#include "..\..\dialog\contextmenu\defines.hpp"
 #include "script_component.hpp"
 
 params ["_open",["_dialogPos",[0,0]],["_waypointOrGroup",grpNull]];
