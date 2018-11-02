@@ -46,7 +46,7 @@ private _fnc_update = {
 
 
 private _text = "";
-private _update = {_this ctrlSetText format ["SHOW UNITS (%1)",["OFF","ON"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) in GVAR(individualUnitsGroups))]};
+private _update = {_this ctrlSetText (["SHOW UNITS","STOP SHOWING UNITS"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) in GVAR(individualUnitsGroups)))};
 private _statement = QUOTE([] call FUNC(setGroupIndividualUnits); [false] call FUNC(openContextMenu););
 call _fnc_create;
 
