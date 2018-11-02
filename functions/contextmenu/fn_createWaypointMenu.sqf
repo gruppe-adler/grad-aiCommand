@@ -118,18 +118,7 @@ call _fnc_create;
 _update = nil;
 _text = "DELETE WAYPOINT";
 _statement = "
-    grad_aicommand_isDeleteClick = true;
-    [{grad_aicommand_isDeleteClick = false}, [], 1] call CBA_fnc_waitAndExecute;
     [] call grad_aicommand_fnc_deleteWP;
-    [false] call grad_aicommand_fnc_openContextMenu;
-";
-call _fnc_create;
-
-_text = "DELETE ALL WAYPOINTS";
-_statement = "
-    grad_aicommand_isDeleteClick = true;
-    [{grad_aicommand_isDeleteClick = false}, [], 1] call CBA_fnc_waitAndExecute;
-    ['ALL'] call grad_aicommand_fnc_deleteWP;
     [false] call grad_aicommand_fnc_openContextMenu;
 ";
 call _fnc_create;

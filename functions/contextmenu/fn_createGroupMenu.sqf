@@ -50,26 +50,33 @@ private _update = nil;
 private _statement = QUOTE([false] call FUNC(openContextMenu); [true] call FUNC(toggleRenameGroupDialog););
 call _fnc_create;
 
-private _text = "MERGE GROUP";
-private _update = nil;
-private _statement = QUOTE([ARR_2(_this select 0,'MERGE GROUP')] call FUNC(createJoinGroupSubmenu););
+_text = "MERGE GROUP";
+_update = nil;
+_statement = QUOTE([ARR_2(_this select 0,'MERGE GROUP')] call FUNC(createJoinGroupSubmenu););
 call _fnc_create;
 
-private _text = "";
-private _update = {_this ctrlSetText (["PAUSE WAYPOINTS","RESUME WAYPOINTS"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(isPaused),false]))};
-private _statement = QUOTE( \
+_text = "";
+_update = {_this ctrlSetText (["PAUSE WAYPOINTS","RESUME WAYPOINTS"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(isPaused),false]))};
+_statement = QUOTE( \
     _group = missionNamespace getVariable [ARR_2(QQGVAR(currentGroup),grpNull)]; \
     [ARR_2(_group,!(_group getVariable [ARR_2(QQGVAR(isPaused),false)]))] call FUNC(pauseWaypoints); \
     [false] call FUNC(openContextMenu); \
 );
 call _fnc_create;
 
-private _text = "";
-private _update = {_this ctrlSetText (["SHOW UNITS","STOP SHOWING UNITS"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) in GVAR(individualUnitsGroups)))};
-private _statement = QUOTE([] call FUNC(setGroupIndividualUnits); [false] call FUNC(openContextMenu););
+_text = "";
+_update = {_this ctrlSetText (["SHOW UNITS","STOP SHOWING UNITS"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) in GVAR(individualUnitsGroups)))};
+_statement = QUOTE([] call FUNC(setGroupIndividualUnits); [false] call FUNC(openContextMenu););
 call _fnc_create;
 
-private _text = "KICK UNIT";
-private _update = nil;
-private _statement = QUOTE([ARR_2(_this select 0,'KICK UNIT')] call FUNC(createKickUnitSubmenu););
+_text = "KICK UNIT";
+_update = nil;
+_statement = QUOTE([ARR_2(_this select 0,'KICK UNIT')] call FUNC(createKickUnitSubmenu););
+call _fnc_create;
+
+_text = "DELETE ALL WAYPOINTS";
+_statement = QUOTE( \
+    ['ALL'] call FUNC(deleteWP); \
+    [false] call FUNC(openContextMenu); \
+);
 call _fnc_create;
