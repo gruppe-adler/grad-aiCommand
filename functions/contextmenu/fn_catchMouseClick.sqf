@@ -17,14 +17,16 @@ while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
     // for some weird reason, some of these variables (_ctrlX, _ctrlY, ...) were nil after the params command
 	/* (ctrlPosition (_controlsGroup controlsGroupCtrl _idc)) params [["_ctrlX",0],["_ctrlY",0],["_ctrlW,",0],["_ctrlH",0]]; */
 
-    _controlPosition = (ctrlPosition (_controlsGroup controlsGroupCtrl _idc));
+    _control = _controlsGroup controlsGroupCtrl _idc;
+    _controlPosition = (ctrlPosition _control);
     _ctrlX = _controlPosition param [0,0];
     _ctrlY = _controlPosition param [1,0];
     _ctrlW = _controlPosition param [2,0];
     _ctrlH = _controlPosition param [3,0];
 
 	if (
-		_xPos >= (_ctrlCgX + _ctrlX) &&
+        ctrlShown _control &&
+		{_xPos >= (_ctrlCgX + _ctrlX)} &&
 		{_xPos <= (_ctrlCgX + _ctrlX + _ctrlW)} &&
 		{_yPos >= _ctrlCgY + _ctrlY} &&
 		{_yPos <= (_ctrlCgY + _ctrlY + _ctrlH)}
@@ -43,14 +45,16 @@ while {!isNull (_controlsGroup controlsGroupCtrl _idc)} do {
     // see above
 	/* (ctrlPosition (_controlsGroup controlsGroupCtrl _idc)) params [["_ctrlX",0],["_ctrlY",0],["_ctrlW,",0],["_ctrlH",0]]; */
 
-    _controlPosition = (ctrlPosition (_controlsGroup controlsGroupCtrl _idc));
+    _control = _controlsGroup controlsGroupCtrl _idc;
+    _controlPosition = (ctrlPosition _control);
     _ctrlX = _controlPosition param [0,0];
     _ctrlY = _controlPosition param [1,0];
     _ctrlW = _controlPosition param [2,0];
     _ctrlH = _controlPosition param [3,0];
 
 	if (
-		_xPos >= (_ctrlCgX + _ctrlX) &&
+        ctrlShown _control &&
+		{_xPos >= (_ctrlCgX + _ctrlX)} &&
 		{_xPos <= (_ctrlCgX + _ctrlX + _ctrlW)} &&
 		{_yPos >= _ctrlCgY + _ctrlY} &&
 		{_yPos <= (_ctrlCgY + _ctrlY + _ctrlH)}
