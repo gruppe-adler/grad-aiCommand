@@ -15,6 +15,12 @@ private _newGroup = createGroup [side _previousGroup,true];
 // if direct edit mode --> update editable groups with new group
 if (GVAR(editMode) == 1) then {
     GVAR(editableGroups) pushBack _newGroup;
+    _newGroup setVariable [QGVAR(isDirectEdit),true,true];
+};
+
+// if paused --> transfer to new group
+if (_previousGroup getVariable [QGVAR(isPaused),false]) then {
+    _newGroup setVariable [QGVAR(isPaused),true,true];
 };
 
 // if individual units were displayed in old group, do the same for new group

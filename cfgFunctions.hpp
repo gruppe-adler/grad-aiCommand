@@ -37,6 +37,7 @@ class GRAD_aicommand {
         class setCanReceiveCommands {};
         class setGivePermissionLevel {};
         class setReceivePermissionLevel {};
+        class unGarrison {};
         class waitASecond {};
         class waypointGarrison {};
     };
@@ -55,6 +56,7 @@ class GRAD_aicommand {
         class deleteWP {};
         class hideContextMenuItems {};
         class openContextMenu {};
+        class pauseWaypoints {};
         class setWPBehaviour {};
         class setWPCombatMode {};
         class setWPSpeed {};

@@ -5,6 +5,10 @@
 
 params ["_unit","_player"];
 
+if ((group _unit) getVariable [QGVAR(isDirectEdit),false]) exitWith {
+    hint "Group is already being edited.";
+};
+
 createDialog QGVAR(commandwindow);
 private _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
 private _map = _display ctrlCreate ["RscMapControl",GRAD_AICOMMAND_COMMANDWINDOW_MAP];
@@ -31,6 +35,9 @@ if (_unit == _player) then {
     GVAR(editMode) = 1;
     GVAR(currentGroup) = group _unit;
     GVAR(editableGroups) = [group _unit];
+
+    GVAR(currentGroup) setVariable [QGVAR(isDirectEdit),true,true];
+    {[_x,"PATH"] remoteExec ["disableAI",_x,false]} forEach (units GVAR(currentGroup));
 };
 
 _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawEditableGroups)}];
