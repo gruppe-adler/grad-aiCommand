@@ -13,8 +13,11 @@ private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNul
 if (isNull _currentGroup) exitWith {};
 
 private _currentWaypoint = _currentGroup getVariable [QGVAR(selectedWaypoint),[]];
-if (count _currentWaypoint == 0) exitWith {};
+if (count _currentWaypoint == 0) then {
+    [true,[_x,_y],_currentGroup] call FUNC(openContextMenu);
+} else {
+    [true,[_x,_y],_currentWaypoint] call FUNC(openContextMenu);
+};
 
-[true,[_x,_y],_currentWaypoint] call FUNC(openContextMenu);
 
 /*[{isNull ((_this select 0) displayCtrl grad_aicommand_contextmenu_GROUP)}, {(_this select 1) call grad_aicommand_fnc_openContextMenu}, [_display,[true,[_x,_y],_wp]]] call CBA_fnc_waitUntilAndExecute;*/

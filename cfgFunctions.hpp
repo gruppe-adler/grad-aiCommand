@@ -27,6 +27,7 @@ class GRAD_aicommand {
         class canGiveCommands {};
         class executeWaypoints {};
         class getSideColor {};
+        class getUnitRoleAbbreviation {};
         class initModule {postInit = 1;};
         class isEditableGroup {};
         class joinNearestGroup {};
@@ -45,6 +46,8 @@ class GRAD_aicommand {
         class catchMouseClick {};
         class createButton {};
         class createGroupMenu {};
+        class createJoinGroupSubmenu {};
+        class createKickUnitSubmenu {};
         class createSubmenu {};
         class createWaypointMenu {};
         class deleteWP {};
@@ -54,6 +57,8 @@ class GRAD_aicommand {
         class setWPStatement {};
         class setWPTimeout {};
         class setWPType {};
+        class submenuJoinGroup {};
+        class submenuKickUnit {};
         class updateContextMenu {};
     };
 };

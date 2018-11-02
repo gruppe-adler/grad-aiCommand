@@ -25,7 +25,7 @@ _map ctrlShow false;
 _map ctrlShow true;
 
 private _fnc_create = {
-    _button = [_display,_idc,_controlsGroup,[_xButton,_yButton,_buttonW,_buttonH],_statement,_text] call grad_aicommand_fnc_createButton;
+    _button = [_display,_idc,_controlsGroup,[_xButton,_yButton,_buttonW,_buttonH],_statement,_text] call FUNC(createButton);
     _idc = _idc + 1;
     _yButton = _yButton + _buttonH * 1.05;
 
@@ -39,7 +39,7 @@ private _fnc_update = {
         params ["_args","_handle"];
         _args params ["_button","_update"];
 
-        if (isNull _button) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
+        if (isNull _button || !ctrlShown _button) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
         _button call _update;
     },0,_this] call CBA_fnc_addPerFrameHandler;
 };

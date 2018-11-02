@@ -25,7 +25,7 @@ _map ctrlShow false;
 _map ctrlShow true;
 
 private _fnc_create = {
-    _button = [_display,_idc,_controlsGroup,[_xButton,_yButton,_buttonW,_buttonH],_statement,_text] call grad_aicommand_fnc_createButton;
+    _button = [_display,_idc,_controlsGroup,[_xButton,_yButton,_buttonW,_buttonH],_statement,_text] call FUNC(createButton);
     _idc = _idc + 1;
     _yButton = _yButton + _buttonH * 1.05;
 
@@ -39,12 +39,25 @@ private _fnc_update = {
         params ["_args","_handle"];
         _args params ["_button","_update"];
 
-        if (isNull _button) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
+        if (isNull _button || !ctrlShown _button) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
         _button call _update;
     },0,_this] call CBA_fnc_addPerFrameHandler;
 };
 
+
 private _text = "";
 private _update = {_this ctrlSetText format ["SHOW UNITS (%1)",["OFF","ON"] select ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) in GVAR(individualUnitsGroups))]};
-private _statement = QUOTE([] call FUNC(setGroupIndividualUnits); [false] call FUNC(openContextMenu));
+private _statement = QUOTE([] call FUNC(setGroupIndividualUnits); [false] call FUNC(openContextMenu););
+call _fnc_create;
+
+
+private _text = "MERGE GROUP";
+private _update = nil;
+private _statement = QUOTE([ARR_2(_this select 0,'MERGE GROUP')] call FUNC(createJoinGroupSubmenu););
+call _fnc_create;
+
+
+private _text = "KICK UNIT";
+private _update = nil;
+private _statement = QUOTE([ARR_2(_this select 0,'KICK UNIT')] call FUNC(createKickUnitSubmenu););
 call _fnc_create;

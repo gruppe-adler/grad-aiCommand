@@ -4,5 +4,6 @@ private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNul
 _currentGroup setVariable [QGVAR(selectedWaypoint),nil];
 
 missionNamespace setVariable [QGVAR(currentGroup),nil];
+missionNamespace setVariable [QGVAR(submenuJoinableGroups),nil];
 
 [] call FUNC(removeAllEHs);

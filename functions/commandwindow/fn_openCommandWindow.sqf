@@ -5,7 +5,6 @@
 #include "script_component.hpp"
 
 params ["_unit","_player"];
-private "_editMode";
 
 createDialog QGVAR(commandwindow);
 private _display = findDisplay grad_aicommand_commandwindow_DIALOG;
@@ -21,14 +20,14 @@ if (isNil QGVAR(individualUnitsGroups)) then {GVAR(individualUnitsGroups) = []};
 
 // highcommand mode
 if (_unit == _player) then {
-    _editMode = 0;
+    GVAR(editMode) = 0;
     GVAR(currentGroup) = grpNull;
     GVAR(editableGroups) = [];
     [] call FUNC(updateEditableGroups);
 
-// normal edit mode
+// direct edit mode
 } else {
-    _editMode = 1;
+    GVAR(editMode) = 1;
     GVAR(currentGroup) = group _unit;
     GVAR(editableGroups) = [group _unit];
 };
