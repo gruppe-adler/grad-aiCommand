@@ -55,6 +55,8 @@ class GRAD_aicommand {
         class deleteWP {};
         class hideContextMenuItems {};
         class openContextMenu {};
+        class setWPBehaviour {};
+        class setWPCombatMode {};
         class setWPSpeed {};
         class setWPStatement {};
         class setWPTimeout {};

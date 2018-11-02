@@ -77,6 +77,27 @@ _statement = "[_this select 0, 'WAIT',[
 ]] call grad_aicommand_fnc_createSubMenu";
 call _fnc_create;
 
+_update = {_this ctrlSetText format ["COMBAT MODE (%1)",waypointCombatMode ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
+_statement = "[_this select 0, 'COMBAT MODE',[
+    ['NO CHANGE',""['NO CHANGE'] call grad_aicommand_fnc_setWPCombatMode;""],
+    ['GREEN',""['GREEN'] call grad_aicommand_fnc_setWPCombatMode;""],
+    ['WHITE',""['WHITE'] call grad_aicommand_fnc_setWPCombatMode;""],
+    ['YELLOW',""['YELLOW'] call grad_aicommand_fnc_setWPCombatMode;""],
+    ['RED',""['RED'] call grad_aicommand_fnc_setWPCombatMode;""]
+]] call grad_aicommand_fnc_createSubMenu";
+call _fnc_create;
+
+_update = {_this ctrlSetText format ["BEHAVIOUR (%1)",waypointBehaviour ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
+_statement = "[_this select 0, 'BEHAVIOUR',[
+    ['NO CHANGE',""['UNCHANGED'] call grad_aicommand_fnc_setWPBehaviour;""],
+    ['CARELESS',""['CARELESS'] call grad_aicommand_fnc_setWPBehaviour;""],
+    ['SAFE',""['SAFE'] call grad_aicommand_fnc_setWPBehaviour;""],
+    ['AWARE',""['AWARE'] call grad_aicommand_fnc_setWPBehaviour;""],
+    ['COMBAT',""['COMBAT'] call grad_aicommand_fnc_setWPBehaviour;""],
+    ['STEALTH',""['STEALTH'] call grad_aicommand_fnc_setWPBehaviour;""]
+]] call grad_aicommand_fnc_createSubMenu";
+call _fnc_create;
+
 _update = {
     _waypointDescription = waypointDescription ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]]);
     if (_waypointDescription == "") then {_waypointDescription = "NONE"};
