@@ -61,5 +61,5 @@ call _fnc_create;
 
 private _text = "RENAME GROUP";
 private _update = nil;
-private _statement = QUOTE([false] call FUNC(openContextMenu); _this call FUNC(renameGroupDialog););
+private _statement = QUOTE([false] call FUNC(openContextMenu); [true] call FUNC(toggleRenameGroupDialog););
 call _fnc_create;

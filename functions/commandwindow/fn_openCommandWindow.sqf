@@ -9,7 +9,7 @@ createDialog QGVAR(commandwindow);
 private _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
 private _map = _display ctrlCreate ["RscMapControl",GRAD_AICOMMAND_COMMANDWINDOW_MAP];
 private _contextmenu = _display ctrlCreate ["RscControlsGroupNoScrollbars",GRAD_AICOMMAND_CONTEXTMENU_GROUP];
-private _renameGroupMenu = _display ctrlCreate ["RscControlsGroupNoScrollbars",GRAD_AICOMMAND_RENAMEGROUP_GROUP];
+[_display] call FUNC(createRenameGroupDialog);
 _map ctrlSetPosition [safeZoneX,safeZoneY,safeZoneW,safeZoneH];
 _map ctrlCommit 0;
 _contextmenu ctrlShow false;

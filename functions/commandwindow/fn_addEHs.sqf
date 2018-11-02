@@ -1,5 +1,6 @@
 #include "..\..\dialog\ui_toolkit.hpp"
 #include "..\..\dialog\commandwindow\defines.hpp"
+#include "script_component.hpp"
 
 params ["_display","_mapCtrl"];
 
@@ -8,7 +9,7 @@ params ["_display","_mapCtrl"];
 grad_aicommand_keyUpEH = _display displayAddEventHandler ["KeyUp", {
     params ["_display","_DIK"];
     //close on M
-    if (_DIK in (actionKeys "HideMap")) then {
+    if (_DIK in (actionKeys "HideMap") && {!(missionNamespace getVariable [QGVAR(renameDialogIsOpen),false])}) then {
         closeDialog 0;
     };
 }];

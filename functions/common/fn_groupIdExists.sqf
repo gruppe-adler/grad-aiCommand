@@ -4,7 +4,6 @@ params [["_groupID",""],["_side",sideUnknown]];
 
 private _groupExists = false;
 
-diag_log ["fn_groupIdExists",_groupID];
 if (_groupID == "") exitWith {_groupExists};
 
 {
