@@ -35,6 +35,7 @@ class GRAD_aicommand {
         class leaveGroup {};
         class setCanGiveCommands {};
         class setCanReceiveCommands {};
+        class setCanUseHighcommand {};
         class setGivePermissionLevel {};
         class setReceivePermissionLevel {};
         class unGarrison {};
