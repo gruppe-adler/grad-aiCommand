@@ -2,4 +2,4 @@
 
 params [["_unit",objNull],["_canUse",false]];
 
-_unit setVariable [QGVAR(canUseHighcommand),_canGive,true];
+_unit setVariable [QGVAR(canUseHighcommand),_canUse,true];
