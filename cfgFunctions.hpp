@@ -55,6 +55,7 @@ class GRAD_aicommand {
         class createSubmenu {};
         class createWaypointMenu {};
         class deleteWP {};
+        class forceLeaveVehicle {};
         class hideContextMenuItems {};
         class openContextMenu {};
         class pauseWaypoints {};

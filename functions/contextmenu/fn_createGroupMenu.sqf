@@ -80,3 +80,14 @@ _statement = QUOTE( \
     [false] call FUNC(openContextMenu); \
 );
 call _fnc_create;
+
+private _grpLeader = leader _group;
+if !((vehicle _grpLeader) isEqualTo _grpLeader) then {
+    _text = "FORCE LEAVE VEHICLE";
+    _statement = QUOTE( \
+        _group = missionNamespace getVariable [ARR_2(QQGVAR(currentGroup),grpNull)]; \
+        [_group] call FUNC(forceLeaveVehicle); \
+        [false] call FUNC(openContextMenu); \
+    );
+    call _fnc_create;
+};
