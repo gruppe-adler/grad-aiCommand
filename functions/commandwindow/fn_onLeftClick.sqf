@@ -18,7 +18,11 @@ private _clickDistance = _grpScreenPos distance [_x,_y];
 if (_clickDistance < 0.04 && {!isNull _nearestGroup}) then {
 
     if (isNull _nearestGroup) exitWith {};
-    missionNamespace setVariable [QGVAR(currentGroup),_nearestGroup];
+
+    if (GVAR(currentGroup) != _nearestGroup) then {
+        missionNamespace setVariable [QGVAR(currentGroup),_nearestGroup];
+        [GVAR(currentGroup)] call GVAR(onGroupSelected);
+    };
 
 
 // waypoint mode
@@ -33,4 +37,5 @@ if (_clickDistance < 0.04 && {!isNull _nearestGroup}) then {
         [_garrisonedUnits] remoteExecCall [QFUNC(unGarrison),0,false];
     };
 
+    [_wp,_currentGroup] call GVAR(onWaypointCreated);
 };

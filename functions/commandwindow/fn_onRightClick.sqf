@@ -25,6 +25,8 @@ private _fnc_wp = {
     if (_clickDistance < 0.02) then {
         _currentGroup setVariable [QGVAR(selectedWaypoint),_nearestWaypoint];
         [true,_wpScreenPos,_nearestWaypoint] call FUNC(openContextMenu);
+
+        [_nearestWaypoint,_currentGroup] call GVAR(onWaypointSelected);
     };
 };
 
@@ -36,6 +38,8 @@ private _fnc_grp = {
     if (_clickDistance < 0.02) then {
         GVAR(currentGroup) = _nearestGroup;
         [true,_grpScreenPos,_nearestGroup] call FUNC(openContextMenu);
+
+        [GVAR(currentGroup)] call GVAR(onGroupSelected);
     };
 };
 

@@ -38,9 +38,13 @@ if (_unit == _player) then {
 
     GVAR(currentGroup) setVariable [QGVAR(isDirectEdit),true,true];
     {[_x,"PATH"] remoteExec ["disableAI",_x,false]} forEach (units GVAR(currentGroup));
+
+    [GVAR(currentGroup)] call GVAR(onGroupSelected);
 };
 
 _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawEditableGroups)}];
 _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawIndividualUnits)}];
 _map ctrlAddEventHandler ["Draw",{_this call FUNC(drawArrows)}];
 [_display,_map] call FUNC(addEHs);
+
+[_unit,_player,_display,_map] call GVAR(onMapOpenend);
