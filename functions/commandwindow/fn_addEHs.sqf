@@ -4,6 +4,8 @@
 
 params ["_display","_mapCtrl"];
 
+GVAR(leftButtonDown) = false;
+
 GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
     params ["_display","_DIK"];
     //close on M
@@ -12,17 +14,41 @@ GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
     };
 }];
 
+GVAR(mouseDownEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDown", {
+    params ["_control","_button"];
+
+    // only leftclick
+    if (_button > 0) exitWith {};
+
+    GVAR(leftButtonDown) = true;
+
+    false
+}];
+
+GVAR(mouseUpEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonUp", {
+    params ["_control","_button"];
+
+    // only leftclick
+    if (_button > 0) exitWith {};
+
+    GVAR(leftButtonDown) = false;
+
+    false
+}];
+
+
 GVAR(mouseClickEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonClick", {
     params ["_control","_button"];
 
-    switch (_button) do {
+    // currently nothing but left- and rightclick
+    if (_button > 1) exitWith {};
 
-        // left click
-        case (0): {_this call FUNC(onLeftClick)};
-
-        // right click
-        case (1): {_this call FUNC(onRightClick)};
+    if (GVAR(leftButtonDown) && {_button == 0}) then {
+        _this call FUNC(onLeftHeldDown);
+    } else {
+        _this call ([FUNC(onLeftClick),FUNC(onRightClick)] select _button);
     };
+
 
     false
 }];
