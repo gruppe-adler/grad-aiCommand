@@ -37,6 +37,6 @@
 #define GRAD_AICOMMAND_HELP_TEXTPADDING_Y           (Y_SCALE * 0.005)
 #define GRAD_AICOMMAND_HELP_W                       (X_SCALE * 0.20)
 #define GRAD_AICOMMAND_HELP_H_COLLAPSED             (Y_SCALE * 0.03)
-#define GRAD_AICOMMAND_HELP_H_EXPANDED              (Y_SCALE * 0.50)
+#define GRAD_AICOMMAND_HELP_H_EXPANDED              (Y_SCALE * 0.55)
 #define GRAD_AICOMMAND_HELP_X                       (safeZoneX + safeZoneW - GRAD_AICOMMAND_HELP_W - GRAD_AICOMMAND_HELP_PADDING_X)
 #define GRAD_AICOMMAND_HELP_Y                       (safeZoneY + GRAD_AICOMMAND_HELP_PADDING_Y)

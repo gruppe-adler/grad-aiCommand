@@ -4,8 +4,10 @@
 
 params [["_display",displayNull]];
 
+private _height = [GRAD_AICOMMAND_HELP_H_COLLAPSED,GRAD_AICOMMAND_HELP_H_EXPANDED] select (missionNamespace getVariable [QGVAR(helpOpen),false]);
+
 private _controlsGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars",GRAD_AICOMMAND_HELP_CG];
-_controlsGroup ctrlSetPosition [GRAD_AICOMMAND_HELP_X,GRAD_AICOMMAND_HELP_Y,GRAD_AICOMMAND_HELP_W,GRAD_AICOMMAND_HELP_H_COLLAPSED];
+_controlsGroup ctrlSetPosition [GRAD_AICOMMAND_HELP_X,GRAD_AICOMMAND_HELP_Y,GRAD_AICOMMAND_HELP_W,_height];
 _controlsGroup ctrlCommit 0;
 
 private _background = _display ctrlCreate ["RscBackground",-1,_controlsGroup];
@@ -30,6 +32,8 @@ Press <t color='%1'>[H]</t> to toggle help.<br/>
 <t color='%1'>select group</t> - Left click on a group to select it. Anywhere else to unselect it.<br/>
 <br/>
 <t color='%1'>create waypoint</t> - Double click anywhere to create a waypoint for the selected group.<br/>
+<br/>
+<t color='%1'>move waypoint</t> - Drag &amp; drop a waypoint to move it.<br/>
 <br/>
 <t color='%1'>delete waypoint</t> - Select delete from the contextmenu or press [del] while holding your mouse over a waypoint to delete it.<br/>
 <br/>
