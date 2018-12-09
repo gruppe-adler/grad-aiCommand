@@ -13,6 +13,7 @@ class GRAD_aicommand {
         class findNearestEditableGroup {};
         class findNearestWP {};
         class onLeftClick {};
+        class onLeftDblClick {};
         class onRightClick {};
         class onUnload {};
         class openCommandWindow {};

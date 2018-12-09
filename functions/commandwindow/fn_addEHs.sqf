@@ -4,9 +4,7 @@
 
 params ["_display","_mapCtrl"];
 
-/* onMapSingleClick {[_pos,_shift,_alt] call grad_aicommand_fnc_onMapSingleClick}; */
-
-grad_aicommand_keyUpEH = _display displayAddEventHandler ["KeyUp", {
+GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
     params ["_display","_DIK"];
     //close on M
     if (_DIK in (actionKeys "HideMap") && {!(missionNamespace getVariable [QGVAR(renameDialogIsOpen),false])}) then {
@@ -14,16 +12,26 @@ grad_aicommand_keyUpEH = _display displayAddEventHandler ["KeyUp", {
     };
 }];
 
-grad_aicommand_mouseButtonEH = _mapCtrl ctrlAddEventHandler ["MouseButtonUp", {
+GVAR(mouseClickEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonClick", {
     params ["_control","_button"];
 
     switch (_button) do {
 
         // left click
-        case (0): {_this call grad_aicommand_fnc_onLeftClick};
+        case (0): {_this call FUNC(onLeftClick)};
 
         // right click
-        case (1): {_this call grad_aicommand_fnc_onRightClick};
+        case (1): {_this call FUNC(onRightClick)};
+    };
+
+    false
+}];
+
+GVAR(mouseDblClickEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDblClick", {
+    params ["_control","_button"];
+
+    if (_button == 0) then {
+        _this call FUNC(onLeftDblClick);
     };
 
     false
