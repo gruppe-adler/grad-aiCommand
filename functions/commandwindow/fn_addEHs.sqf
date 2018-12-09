@@ -21,6 +21,11 @@ GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
     if (_DIK == 211) exitWith {
         _this call FUNC(onDelKeyUp);
     };
+
+    // H key, open help
+    if (_DIK == 35) exitWith {
+        _this call FUNC(toggleHelp);
+    };
 }];
 
 GVAR(mouseDownEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDown", {
@@ -30,6 +35,11 @@ GVAR(mouseDownEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDown", {
     if (_button > 0) exitWith {};
 
     GVAR(leftButtonDown) = true;
+
+    // keep help control visible
+    _display = ctrlParent _control;
+    _ctrlHelp = _display displayCtrl GRAD_AICOMMAND_HELP_CG;
+    ctrlSetFocus _ctrlHelp;
 
     false
 }];
@@ -67,6 +77,11 @@ GVAR(mouseDblClickEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDblClick", {
 
     if (_button == 0) then {
         _this call FUNC(onLeftDblClick);
+
+        // keep help control visible
+        _display = ctrlParent _control;
+        _ctrlHelp = _display displayCtrl GRAD_AICOMMAND_HELP_CG;
+        ctrlSetFocus _ctrlHelp;
     };
 
     false

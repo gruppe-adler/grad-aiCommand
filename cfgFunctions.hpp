@@ -7,6 +7,7 @@ class GRAD_aicommand {
         file = MODULES_DIRECTORY\grad-aicommand\functions\commandwindow;
 
         class addEHs {};
+        class createHelpDialog {};
         class drawArrows {};
         class drawEditableGroups {};
         class drawIndividualUnits {};
@@ -21,6 +22,7 @@ class GRAD_aicommand {
         class openCommandWindow {};
         class removeAllEHs {};
         class setGroupIndividualUnits {};
+        class toggleHelp {};
         class updateEditableGroups {};
     };
 
