@@ -8,9 +8,18 @@ GVAR(leftButtonDown) = false;
 
 GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
     params ["_display","_DIK"];
-    //close on M
-    if (_DIK in (actionKeys "HideMap") && {!(missionNamespace getVariable [QGVAR(renameDialogIsOpen),false])}) then {
+
+    // don't do anything while user is typing new group name
+    if (missionNamespace getVariable [QGVAR(renameDialogIsOpen),false]) exitWith {};
+
+    // close on M
+    if (_DIK in (actionKeys "HideMap")) exitWith {
         closeDialog 0;
+    };
+
+    // DEL key
+    if (_DIK == 211) exitWith {
+        _this call FUNC(onDelKeyUp);
     };
 }];
 
