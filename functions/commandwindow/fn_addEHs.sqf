@@ -71,18 +71,3 @@ GVAR(mouseClickEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonClick", {
 
     false
 }];
-
-GVAR(mouseDblClickEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDblClick", {
-    params ["_control","_button"];
-
-    if (_button == 0) then {
-        _this call FUNC(onLeftDblClick);
-
-        // keep help control visible
-        _display = ctrlParent _control;
-        _ctrlHelp = _display displayCtrl GRAD_AICOMMAND_HELP_CG;
-        ctrlSetFocus _ctrlHelp;
-    };
-
-    false
-}];

@@ -31,7 +31,7 @@ Press <t color='%1'>[H]</t> to toggle help.<br/>
 <br/>
 <t color='%1'>select group</t> - Left click on a group to select it. Anywhere else to unselect it.<br/>
 <br/>
-<t color='%1'>create waypoint</t> - Double click anywhere to create a waypoint for the selected group.<br/>
+<t color='%1'>create waypoint</t> - Shift + rightclick to create a waypoint for the selected group.<br/>
 <br/>
 <t color='%1'>move waypoint</t> - Drag &amp; drop a waypoint to move it.<br/>
 <br/>

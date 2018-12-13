@@ -15,7 +15,6 @@ class GRAD_aicommand {
         class findNearestWP {};
         class onDelKeyUp {};
         class onLeftClick {};
-        class onLeftDblClick {};
         class onLeftHeldDown {};
         class onRightClick {};
         class onUnload {};
