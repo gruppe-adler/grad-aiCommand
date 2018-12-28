@@ -29,12 +29,15 @@ GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
 }];
 
 GVAR(mouseDownEH) = _mapCtrl ctrlAddEventHandler ["MouseButtonDown", {
-    params ["_control","_button"];
+    params ["_control","_button","_xPos","_yPos"];
 
     // only leftclick
     if (_button > 0) exitWith {};
 
     GVAR(leftButtonDown) = true;
+    GVAR(leftButtonDownTime) = diag_tickTime;
+    GVAR(leftButtonDownPosScreen) = [_xPos,_yPos];
+    GVAR(leftButtonDownPosWorld) = _control ctrlMapScreenToWorld [_xPos,_yPos];
 
     // keep help control visible
     _display = ctrlParent _control;

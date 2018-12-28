@@ -16,5 +16,10 @@ GVAR(currentGroup) = nil;
 GVAR(submenuJoinableGroups) = nil;
 GVAR(renameDialogIsOpen) = nil;
 GVAR(editMode) = nil;
+GVAR(leftButtonDown) = nil;
+GVAR(leftButtonDownPosScreen) = nil;
+GVAR(leftButtonDownPosWorld) = nil;
+GVAR(selectDrawEH) = nil;
+GVAR(leftButtonDownTime) = nil;
 
 [] call FUNC(removeAllEHs);
