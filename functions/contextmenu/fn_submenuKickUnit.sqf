@@ -2,7 +2,7 @@
 
 params [["_unitID",-1]];
 
-private _previousGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNull];
+private _previousGroup = missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull];
 private _unit = (units _previousGroup) param [_unitID,objNull];
 if (isNull _unit) exitWith {};
 

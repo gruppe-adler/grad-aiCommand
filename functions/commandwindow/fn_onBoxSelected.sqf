@@ -1,5 +1,6 @@
 #include "script_component.hpp"
 
-params [["_mapCtrl",controlNull],["_startPosWorld",[0,0]],["_endPosWorld",[0,0]]];
+params ["_selectedArea"];
 
-diag_log ["onBoxSelected",_startPosWorld,_endPosWorld];
+GVAR(currentGroups) = GVAR(editableGroups) select {(leader _x) inArea _selectedArea};
+GVAR(currentGroups) call GVAR(onGroupSelected);

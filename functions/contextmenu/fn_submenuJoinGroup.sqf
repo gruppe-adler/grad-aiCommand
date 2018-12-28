@@ -7,4 +7,4 @@ private _groupToJoin = _joinableGroups param [_groupID,grpNull];
 
 if (isNull _groupToJoin) exitWith {};
 
-units (missionNamespace getVariable [QGVAR(currentGroup),grpNull]) joinSilent _groupToJoin;
+units (missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) joinSilent _groupToJoin;

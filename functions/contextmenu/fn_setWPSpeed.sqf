@@ -2,10 +2,10 @@
 
 params ["_speed"];
 
-private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNull];
-if (isNull _currentGroup) exitWith {};
+private _waypointMenuGroup = missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull];
+if (isNull _waypointMenuGroup) exitWith {};
 
-private _currentWaypoint = _currentGroup getVariable [QGVAR(selectedWaypoint),[]];
+private _currentWaypoint = _waypointMenuGroup getVariable [QGVAR(selectedWaypoint),[]];
 if (count _currentWaypoint == 0) exitWith {};
 
 if (_speed in ["UNCHANGED","LIMITED","NORMAL","FULL"]) then {
