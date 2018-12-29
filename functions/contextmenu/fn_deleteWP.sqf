@@ -10,7 +10,10 @@ switch (_mode) do {
         private _currentWaypoint = _waypointMenuGroup getVariable [QGVAR(selectedWaypoint),[]];
         if (count _currentWaypoint == 0) exitWith {};
 
-        deleteWaypoint _currentWaypoint;
+        // check if user has edited a waypoint that is on top of other groups' waypoints
+        private _editedWaypoints = [_currentWaypoint] call FUNC(findCoEditedWPs);
+
+        {deleteWaypoint _x} forEach _editedWaypoints;
     };
 
     case ("ALL"): {

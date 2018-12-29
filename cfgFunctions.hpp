@@ -60,6 +60,7 @@ class GRAD_aicommand {
         class createSubmenu {};
         class createWaypointMenu {};
         class deleteWP {};
+        class findCoEditedWPs {};
         class forceLeaveVehicle {};
         class hideContextMenuItems {};
         class openContextMenu {};

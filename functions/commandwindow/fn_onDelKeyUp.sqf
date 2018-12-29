@@ -23,4 +23,5 @@ private _waypointPosScreen = _mapCtrl ctrlMapWorldToScreen _waypointPosWorld;
 // nearest waypoint too far away
 if (_waypointPosScreen distance _mousePosScreen > 0.03) exitWith {};
 
-deleteWaypoint _nearestWaypoint;
+private _editedWaypoints = [_nearestWaypoint] call FUNC(findCoEditedWPs);
+{deleteWaypoint _x} forEach _editedWaypoints;
