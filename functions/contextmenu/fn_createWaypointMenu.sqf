@@ -144,3 +144,19 @@ _statement = {
     [false] call grad_aicommand_fnc_openContextMenu;
 };
 call _fnc_create;
+
+
+// add custom group context menu actions
+if (count GVAR(customWaypointContext) > 0) then {
+    {
+        _x params ["_text","_statement"];
+        _statement = compile format [QUOTE( \
+            private _group = missionNamespace getVariable [ARR_2(QQGVAR(groupMenuGroup),grpNull)]; \
+            private _waypoint = _group getVariable [ARR_2(QQGVAR(selectedWaypoint),false)]; \
+            private _this = [ARR_2(_group,_waypoint)]; \
+            %1; \
+            [false] call FUNC(openContextMenu); \
+        ),_statement];
+        call _fnc_create;
+    } forEach GVAR(customWaypointContext);
+};

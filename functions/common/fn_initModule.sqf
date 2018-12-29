@@ -30,17 +30,41 @@ if (isNil QGVAR(onWaypointCreated)) then {
     GVAR(onWaypointCreated) = compile ([missionConfigFile >> "CfgGradAICommand","onWaypointCreated",""] call BIS_fnc_returnConfigEntry);
 };
 
+
 if (isNil QGVAR(customWaypointActions)) then {
     GVAR(customWaypointActions) = [];
 };
-
 private _customWaypointActionClasses = "true" configClasses (missionConfigFile >> "CfgGradAICommand" >> "customWaypointActions");
 {
     GVAR(customWaypointActions) pushBack [
         [_x,"displayName",""] call BIS_fnc_returnConfigEntry,
-        [_x,"action"] call BIS_fnc_returnConfigEntry
+        [_x,"statement"] call BIS_fnc_returnConfigEntry
     ];
 } forEach _customWaypointActionClasses;
+
+
+if (isNil QGVAR(customWaypointContext)) then {
+    GVAR(customWaypointContext) = [];
+};
+private _customWaypointContextClasses = "true" configClasses (missionConfigFile >> "CfgGradAICommand" >> "customWaypointContext");
+{
+    GVAR(customWaypointContext) pushBack [
+        [_x,"displayName",""] call BIS_fnc_returnConfigEntry,
+        [_x,"statement"] call BIS_fnc_returnConfigEntry
+    ];
+} forEach _customWaypointContextClasses;
+
+
+if (isNil QGVAR(customGroupContext)) then {
+    GVAR(customGroupContext) = [];
+};
+private _customGroupContextClasses = "true" configClasses (missionConfigFile >> "CfgGradAICommand" >> "customGroupContext");
+{
+    GVAR(customGroupContext) pushBack [
+        [_x,"displayName",""] call BIS_fnc_returnConfigEntry,
+        [_x,"statement"] call BIS_fnc_returnConfigEntry
+    ];
+} forEach _customGroupContextClasses;
 
 
 if (hasInterface) then {
