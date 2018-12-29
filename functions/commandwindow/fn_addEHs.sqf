@@ -7,7 +7,7 @@ params ["_display","_mapCtrl"];
 GVAR(leftButtonDown) = false;
 
 GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
-    params ["_display","_DIK"];
+    params ["_display","_DIK","_shift","_ctrl","_alt"];
 
     // don't do anything while user is typing new group name
     if (missionNamespace getVariable [QGVAR(renameDialogIsOpen),false]) exitWith {};
@@ -15,6 +15,11 @@ GVAR(keyUpEH) = _display displayAddEventHandler ["KeyUp", {
     // close on M
     if (_DIK in (actionKeys "HideMap")) exitWith {
         closeDialog 0;
+    };
+
+    // ctrl + A, select all groups
+    if (_DIK == 30 && _ctrl) exitWith {
+        GVAR(currentGroups) = +GVAR(editableGroups);
     };
 
     // DEL key
