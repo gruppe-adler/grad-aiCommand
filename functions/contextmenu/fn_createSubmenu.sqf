@@ -4,13 +4,6 @@
 
 params ["_parent","_mode","_menuItems"];
 
-/* private _groupIDC = switch (_mode) do {
-    case ("TYPE"): {grad_aicommand_contextmenu_TypeCG};
-    case ("SPEED"): {grad_aicommand_contextmenu_SpeedCG};
-    case ("WAIT"): {grad_aicommand_contextmenu_WaitCG};
-    case ("STATEMENT"): {grad_aicommand_contextmenu_StatementCG};
-}; */
-
 private _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
 private _controlsGroup = _display displayCtrl GRAD_AICOMMAND_CONTEXTMENU_GROUP;
 
@@ -36,7 +29,11 @@ private _fnc_create = {
 
 {
     _x params ["_text","_statement"];
+    call _fnc_create;
+} forEach _menuItems;
+
+/* {
     _statement = _statement + " [] call grad_aicommand_fnc_updateContextMenu";
     call _fnc_create;
     false
-} count _menuItems;
+} count _menuItems; */
