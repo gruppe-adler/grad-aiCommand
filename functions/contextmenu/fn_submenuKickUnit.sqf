@@ -9,6 +9,12 @@ if (isNull _unit) exitWith {};
 private _canReceiveCommands = _previousGroup getVariable QGVAR(canReceiveCommands);
 if (!isNil "_canReceiveCommands") then {_newGroup setVariable [QGVAR(canReceiveCommands),_canReceiveCommands,true]};
 
+// last unit in group
+if (count units _previousGroup == 1) then {
+    GVAR(currentGroups) deleteAt (GVAR(currentGroups) find _previousGroup);
+    GVAR(groupMenuGroup) = grpNull;
+};
+
 private _newGroup = createGroup [side _previousGroup,true];
 [_unit] joinSilent _newGroup;
 
