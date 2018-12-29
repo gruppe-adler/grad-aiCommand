@@ -22,7 +22,7 @@ private _color = [GVAR(highcommandSide)] call FUNC(getSideColor);
     ];
 
     // draw selector icon
-    _icon = ["\A3\ui_f\data\map\groupicons\selector_selectable_ca.paa","\A3\ui_f\data\map\groupicons\selector_selected_ca.paa"] select (_x == GVAR(currentGroup));
+    _icon = ["\A3\ui_f\data\map\groupicons\selector_selectable_ca.paa","\A3\ui_f\data\map\groupicons\selector_selected_ca.paa"] select (_x in GVAR(currentGroups));
     _map drawIcon [
         _icon,
         [1,1,1,1],

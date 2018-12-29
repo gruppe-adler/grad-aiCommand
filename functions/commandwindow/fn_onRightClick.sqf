@@ -7,26 +7,30 @@ params ["_mapCtrl","_button","_x","_y","_shift","_alt","_ctrl"];
 
 private _mousePosWorld = _mapCtrl ctrlMapScreenToWorld [_x,_y];
 
-private _currentGroup = missionNamespace getVariable [QGVAR(currentGroup),grpNull];
-if (isNull _currentGroup) exitWith {};
+private _currentGroups = missionNamespace getVariable [QGVAR(currentGroups),[]];
+if (count _currentGroups == 0) exitWith {};
 
 
 // create waypoint =============================================================
 if (_shift) then {
-    private _wp = _currentGroup addWaypoint [_mousePosWorld,0];
-    _wp setWaypointType "MOVE";
+    {
+        _thisGroup = _x;
+        private _wp = _thisGroup addWaypoint [_mousePosWorld,0];
+        _wp setWaypointType "MOVE";
 
-    private _garrisonedUnits = (units _currentGroup) select {_x getVariable ["ace_ai_garrisonned",false]};
-    if (count _garrisonedUnits > 0) then {
-        [_garrisonedUnits] remoteExecCall [QFUNC(unGarrison),0,false];
-    };
+        private _garrisonedUnits = (units _thisGroup) select {_x getVariable ["ace_ai_garrisonned",false]};
+        if (count _garrisonedUnits > 0) then {
+            [_garrisonedUnits] remoteExecCall [QFUNC(unGarrison),0,false];
+        };
 
-    [_wp,_currentGroup] call GVAR(onWaypointCreated);
+        [_wp,_thisGroup] call GVAR(onWaypointCreated);
+    } forEach _currentGroups;
 
 
 // contextmenu =================================================================
 } else {
-    private _nearestWaypoint = [_mousePosWorld, _currentGroup] call FUNC(findNearestWP);
+
+    private _nearestWaypoint = [_mousePosWorld, _currentGroups] call FUNC(findNearestWP);
     private _nearestGroup = [_mousePosWorld] call FUNC(findNearestEditableGroup);
 
 
@@ -39,10 +43,12 @@ if (_shift) then {
 
         _clickDistance = _wpScreenPos distance [_x,_y];
         if (_clickDistance < 0.02) then {
-            _currentGroup setVariable [QGVAR(selectedWaypoint),_nearestWaypoint];
+            _nearestWaypoint params [["_waypointGroup",grpNull]];
+
+            _waypointGroup setVariable [QGVAR(selectedWaypoint),_nearestWaypoint];
             [true,_wpScreenPos,_nearestWaypoint] call FUNC(openContextMenu);
 
-            [_nearestWaypoint,_currentGroup] call GVAR(onWaypointSelected);
+            [_nearestWaypoint,_waypointGroup] call GVAR(onWaypointSelected);
         };
     };
 
@@ -52,10 +58,7 @@ if (_shift) then {
 
         _clickDistance = _grpScreenPos distance [_x,_y];
         if (_clickDistance < 0.02) then {
-            GVAR(currentGroup) = _nearestGroup;
             [true,_grpScreenPos,_nearestGroup] call FUNC(openContextMenu);
-
-            [GVAR(currentGroup)] call GVAR(onGroupSelected);
         };
     };
 

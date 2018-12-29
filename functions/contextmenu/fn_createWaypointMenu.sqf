@@ -6,6 +6,8 @@ params ["_dialogPos","_waypoint"];
 
 if (count _waypoint == 0) exitWith {};
 
+GVAR(groupMenuGroup) = _waypoint param [0,grpNull];
+
 private _display = findDisplay GRAD_AICOMMAND_COMMANDWINDOW_DIALOG;
 private _map = _display displayCtrl GRAD_AICOMMAND_COMMANDWINDOW_MAP;
 private _controlsGroup = _display displayCtrl GRAD_AICOMMAND_CONTEXTMENU_GROUP;
@@ -44,7 +46,7 @@ private _fnc_update = {
 };
 
 private _text = "";
-private _update = {_this ctrlSetText format ["TYPE (%1)",waypointType ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
+private _update = {_this ctrlSetText format ["TYPE (%1)",waypointType ((missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
 private _statement = "[_this select 0, 'TYPE',[
     ['MOVE',""['MOVE'] call grad_aicommand_fnc_setWPType;""],
     ['CYCLE',""['CYCLE'] call grad_aicommand_fnc_setWPType;""],
@@ -53,7 +55,7 @@ private _statement = "[_this select 0, 'TYPE',[
 ]] call grad_aicommand_fnc_createSubMenu";
 call _fnc_create;
 
-_update = {_this ctrlSetText format ["SPEED (%1)",waypointSpeed ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
+_update = {_this ctrlSetText format ["SPEED (%1)",waypointSpeed ((missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
 _statement = "[_this select 0, 'SPEED',[
     ['UNCHANGED',""['UNCHANGED'] call grad_aicommand_fnc_setWPSpeed;""],
     ['LIMITED',""['LIMITED'] call grad_aicommand_fnc_setWPSpeed;""],
@@ -62,7 +64,7 @@ _statement = "[_this select 0, 'SPEED',[
 ]] call grad_aicommand_fnc_createSubMenu";
 call _fnc_create;
 
-_update = {_this ctrlSetText format ["WAIT (%1 SECONDS)",(waypointTimeout ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])) select 0]};
+_update = {_this ctrlSetText format ["WAIT (%1 SECONDS)",(waypointTimeout ((missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])) select 0]};
 _statement = "[_this select 0, 'WAIT',[
     ['0s',""[0] call grad_aicommand_fnc_setWPTimeout;""],
     ['30s',""[30] call grad_aicommand_fnc_setWPTimeout;""],
@@ -77,7 +79,7 @@ _statement = "[_this select 0, 'WAIT',[
 ]] call grad_aicommand_fnc_createSubMenu";
 call _fnc_create;
 
-_update = {_this ctrlSetText format ["COMBAT MODE (%1)",waypointCombatMode ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
+_update = {_this ctrlSetText format ["COMBAT MODE (%1)",waypointCombatMode ((missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
 _statement = "[_this select 0, 'COMBAT MODE',[
     ['NO CHANGE',""['NO CHANGE'] call grad_aicommand_fnc_setWPCombatMode;""],
     ['GREEN',""['GREEN'] call grad_aicommand_fnc_setWPCombatMode;""],
@@ -87,7 +89,7 @@ _statement = "[_this select 0, 'COMBAT MODE',[
 ]] call grad_aicommand_fnc_createSubMenu";
 call _fnc_create;
 
-_update = {_this ctrlSetText format ["BEHAVIOUR (%1)",waypointBehaviour ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
+_update = {_this ctrlSetText format ["BEHAVIOUR (%1)",waypointBehaviour ((missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]])]};
 _statement = "[_this select 0, 'BEHAVIOUR',[
     ['NO CHANGE',""['UNCHANGED'] call grad_aicommand_fnc_setWPBehaviour;""],
     ['CARELESS',""['CARELESS'] call grad_aicommand_fnc_setWPBehaviour;""],
@@ -99,7 +101,7 @@ _statement = "[_this select 0, 'BEHAVIOUR',[
 call _fnc_create;
 
 _update = {
-    _waypointDescription = waypointDescription ((missionNamespace getVariable [QGVAR(currentGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]]);
+    _waypointDescription = waypointDescription ((missionNamespace getVariable [QGVAR(groupMenuGroup),grpNull]) getVariable [QGVAR(selectedWaypoint),[grpNull,-1]]);
     if (_waypointDescription == "") then {_waypointDescription = "NONE"};
     _this ctrlSetText format ["ACTION (%1)",_waypointDescription];
 };

@@ -13,6 +13,7 @@ class GRAD_aicommand {
         class drawIndividualUnits {};
         class findNearestEditableGroup {};
         class findNearestWP {};
+        class onBoxSelected {};
         class onDelKeyUp {};
         class onLeftClick {};
         class onLeftHeldDown {};
@@ -59,6 +60,7 @@ class GRAD_aicommand {
         class createSubmenu {};
         class createWaypointMenu {};
         class deleteWP {};
+        class findCoEditedWPs {};
         class forceLeaveVehicle {};
         class hideContextMenuItems {};
         class openContextMenu {};
