@@ -29,6 +29,9 @@ class GRAD_aicommand {
     class common {
         file = MODULES_DIRECTORY\grad-aicommand\functions\common;
 
+        class addCustomGroupContext {};
+        class addCustomWaypointAction {};
+        class addCustomWaypointContext {};
         class canGiveCommands {};
         class executeWaypoints {};
         class getSideColor {};
@@ -38,6 +41,9 @@ class GRAD_aicommand {
         class isEditableGroup {};
         class joinNearestGroup {};
         class leaveGroup {};
+        class removeCustomGroupContext {};
+        class removeCustomWaypointAction {};
+        class removeCustomWaypointContext {};
         class setCanGiveCommands {};
         class setCanReceiveCommands {};
         class setCanUseHighcommand {};

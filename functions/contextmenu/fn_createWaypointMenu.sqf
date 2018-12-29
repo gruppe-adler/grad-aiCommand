@@ -117,12 +117,13 @@ _update = {
 };
 _statement = {
     // add custom actions
+    private _nonNilCustomWaypointActions = GVAR(customWaypointActions) select {!isNil "_x"};
     private _customActions = [];
     {
         _x params ["_name","_action"];
         private _statement = compile format ["[""true"",""%1"",""%2""] call grad_aicommand_fnc_setWPStatement",_action,_name];
         _customActions pushBack [_name,_statement];
-    } forEach GVAR(customWaypointActions);
+    } forEach _nonNilCustomWaypointActions;
 
     [_this select 0, 'STATEMENT',[
         ['NONE',{['true','','NONE'] call grad_aicommand_fnc_setWPStatement}],
@@ -147,7 +148,8 @@ call _fnc_create;
 
 
 // add custom group context menu actions
-if (count GVAR(customWaypointContext) > 0) then {
+private _nonNilCustomWaypointContext = GVAR(customWaypointContext) select {!isNil "_x"};
+if (count _nonNilCustomWaypointContext > 0) then {
     {
         _x params ["_text","_statement"];
         _statement = compile format [QUOTE( \
@@ -158,5 +160,5 @@ if (count GVAR(customWaypointContext) > 0) then {
             [false] call FUNC(openContextMenu); \
         ),_statement];
         call _fnc_create;
-    } forEach GVAR(customWaypointContext);
+    } forEach _nonNilCustomWaypointContext;
 };

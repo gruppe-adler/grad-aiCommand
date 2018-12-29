@@ -38,7 +38,7 @@ private _customWaypointActionClasses = "true" configClasses (missionConfigFile >
 {
     GVAR(customWaypointActions) pushBack [
         [_x,"displayName",""] call BIS_fnc_returnConfigEntry,
-        [_x,"statement"] call BIS_fnc_returnConfigEntry
+        [_x,"statement",""] call BIS_fnc_returnConfigEntry
     ];
 } forEach _customWaypointActionClasses;
 
@@ -50,7 +50,7 @@ private _customWaypointContextClasses = "true" configClasses (missionConfigFile 
 {
     GVAR(customWaypointContext) pushBack [
         [_x,"displayName",""] call BIS_fnc_returnConfigEntry,
-        [_x,"statement"] call BIS_fnc_returnConfigEntry
+        [_x,"statement",""] call BIS_fnc_returnConfigEntry
     ];
 } forEach _customWaypointContextClasses;
 
@@ -62,7 +62,7 @@ private _customGroupContextClasses = "true" configClasses (missionConfigFile >> 
 {
     GVAR(customGroupContext) pushBack [
         [_x,"displayName",""] call BIS_fnc_returnConfigEntry,
-        [_x,"statement"] call BIS_fnc_returnConfigEntry
+        [_x,"statement",""] call BIS_fnc_returnConfigEntry
     ];
 } forEach _customGroupContextClasses;
 
