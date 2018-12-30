@@ -4,11 +4,16 @@ params ["_map"];
 
 private _color = [GVAR(highcommandSide)] call FUNC(getSideColor);
 {
-    _pos = getPos leader _x;
+    private _pos = getPos leader _x;
+    private _marker = if (_x in GVAR(individualUnitsGroups)) then {
+        "\A3\ui_f\data\map\markers\system\dummy_ca.paa"
+    } else {
+        format ["\A3\ui_f\data\map\markers\nato\%1.paa",[_x] call ace_common_fnc_getMarkerType]
+    };
 
     // draw group icon and ID
     _map drawIcon [
-        format ["\A3\ui_f\data\map\markers\nato\%1.paa",[_x] call ace_common_fnc_getMarkerType],
+        _marker,
         _color,
         _pos,
         24,
