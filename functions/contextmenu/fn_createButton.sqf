@@ -13,7 +13,10 @@ if (isNull (_controlsGroup controlsGroupCtrl _idc)) then {
 _button ctrlShow true;
 _button ctrlSetText _text;
 _button ctrlSetPosition _pos;
-_button ctrlAddEventHandler ["buttonClick",_statement];
+
+if !(_statement isEqualType []) then {_statement = [_statement]};
+{_button ctrlAddEventHandler ["buttonClick",_x]} forEach _statement;
+
 _button ctrlCommit 0;
 
 _button
