@@ -93,3 +93,17 @@ if !((vehicle _grpLeader) isEqualTo _grpLeader) then {
     );
     call _fnc_create;
 };
+
+// add custom group context menu actions
+private _nonNilCustomGroupContext = GVAR(customGroupContext) select {!isNil "_x"};
+if (count _nonNilCustomGroupContext > 0) then {
+    {
+        _x params ["_text","_statement"];
+        _statement = compile format [QUOTE( \
+            _this = [missionNamespace getVariable [ARR_2(QQGVAR(groupMenuGroup),grpNull)]]; \
+            %1; \
+            [false] call FUNC(openContextMenu); \
+        ),_statement];
+        call _fnc_create;
+    } forEach _nonNilCustomGroupContext;
+};
