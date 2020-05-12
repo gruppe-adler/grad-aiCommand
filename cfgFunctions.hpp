@@ -3,6 +3,17 @@
 #endif
 
 class GRAD_aicommand {
+    class bodycam {
+        file = MODULES_DIRECTORY\grad-aicommand\functions\bodycam;
+
+        class createBodycamOverlay {};
+        class onBodycamPrevNextButton {};
+        class setBodycamHost {};
+        class startBodyCam {};
+        class stopBodyCam {};
+        class updateBodycamOverlay {};
+    };
+
     class commandwindow {
         file = MODULES_DIRECTORY\grad-aicommand\functions\commandwindow;
 

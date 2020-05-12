@@ -94,6 +94,14 @@ if !((vehicle _grpLeader) isEqualTo _grpLeader) then {
     call _fnc_create;
 };
 
+_text = "VIEW BODYCAM";
+_statement = QUOTE( \
+    _group = missionNamespace getVariable [ARR_2(QQGVAR(groupMenuGroup),grpNull)]; \
+    [false] call FUNC(openContextMenu); \
+    [_group] call FUNC(startBodyCam); \
+);
+call _fnc_create;
+
 // add custom group context menu actions
 private _nonNilCustomGroupContext = GVAR(customGroupContext) select {!isNil "_x"};
 if (count _nonNilCustomGroupContext > 0) then {
